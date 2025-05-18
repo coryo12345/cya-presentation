@@ -37,6 +37,8 @@ export const PAGES = [
     title: 'Tutorial',
     description: 'This is the tutorial page. Here would be a description of where you are / what is happening',
     backgroundColor: 'slategray',
+    image:
+      'https://shopgreatpretenders.com/cdn/shop/files/Untitleddesign-2023-08-23T101829.266_ee7c6476-c595-492f-be70-3357b1a31e3e.png?v=1692800320&width=1600',
     actions: [
       {
         text: 'A bonus action you can take',

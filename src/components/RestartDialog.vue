@@ -25,7 +25,7 @@
 
 <script setup>
 import RefreshIcon from '@/components/icons/RefreshIcon.vue';
-import { state } from '@/state';
+import { state } from '@/game/state';
 
 const show = defineModel({ type: Boolean, default: false });
 

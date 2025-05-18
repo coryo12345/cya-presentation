@@ -5,12 +5,14 @@
       :style="pageStyle"
     ></div>
     <div class="relative text-white p-8 flex flex-col justify-between gap-4 h-full">
-      <div class="flex justify-between gap-4 ml-16">
+      <div class="flex justify-between gap-4 ml-4 mx-8">
         <div>
           <h2 class="text-4xl">{{ page.title }}</h2>
           <p>{{ page.description }}</p>
         </div>
-        <img v-if="sideImg" :src="sideImg" class="w-1/3 rounded-lg" />
+        <div v-if="sideImg" class="w-1/3">
+          <img :src="sideImg" class="max-h-[200px] rounded-lg ml-auto" />
+        </div>
       </div>
       <div v-if="props.page.actions?.length && canTakeAction" class="flex flex-wrap justify-center gap-4">
         <button
@@ -46,7 +48,7 @@
 import { computed, ref, watch } from 'vue';
 
 /** @type {{
- * page:import('@/pages').Page
+ * page:import('@/game/pages').Page
  * }} */
 const props = defineProps({
   page: {
@@ -71,7 +73,7 @@ const sideImg = computed(() => {
 });
 
 const canTakeAction = ref(true);
-/** @param {import('@/pages').PageAction} action */
+/** @param {import('@/game/pages').PageAction} action */
 const takeAction = (action) => {
   if (!canTakeAction.value) return;
   canTakeAction.value = false;
