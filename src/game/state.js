@@ -1,4 +1,4 @@
-import { PAGES } from '@/game/pages';
+import { PAGES } from './pages';
 import { useStorage } from '@vueuse/core';
 import { reactive } from 'vue';
 import { ITEM_MAP } from './items';
@@ -56,5 +56,19 @@ export const state = reactive({
       storedState.value.inventory.splice(idx, 1);
       count--;
     }
+  },
+  dialog: {
+    show: false,
+    title: '',
+    description: '',
+  },
+  /**
+   * @param {string} title
+   * @param {string} description
+   */
+  openDialog(title, description) {
+    this.dialog.show = true;
+    this.dialog.title = title;
+    this.dialog.description = description;
   },
 });

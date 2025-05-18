@@ -45,6 +45,8 @@
 </template>
 
 <script setup>
+import { ITEM_MAP } from '@/game/items';
+import { state } from '@/game/state';
 import { computed, ref, watch } from 'vue';
 
 /** @type {{
@@ -77,7 +79,21 @@ const canTakeAction = ref(true);
 const takeAction = (action) => {
   if (!canTakeAction.value) return;
   canTakeAction.value = false;
-  action.action();
+  if (typeof action.action === 'function') {
+    action.action();
+  } else if (action.effect) {
+    // TODO - look for item name in brakcets, e.g. [copper_coin]
+    // if found, add that item to inventory, and swap name to item.name
+    const itemName = action.effect.match(/\[([^\]]+)\]/)?.[1];
+    let effect = action.effect;
+    if (itemName) {
+      const item = ITEM_MAP[itemName];
+      if (!item) return;
+      state.addItem(itemName);
+      effect = effect.replace(`[${itemName}]`, item.name);
+    }
+    state.openDialog(action.name, effect);
+  }
 };
 watch(
   () => props.page,

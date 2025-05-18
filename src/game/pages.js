@@ -1,3 +1,5 @@
+import { state } from './state';
+
 /**
  * @typedef {Object} PageLink
  * @property {string} name
@@ -44,14 +46,20 @@ export const PAGES = [
         name: 'A bonus action you can take',
         description: "you don't leave this screen by taking a bonus action",
         action: () => {
-          alert('This is just an example. But something probably would have happened here!');
+          state.openDialog(
+            'Bonus Action 1',
+            'This is just an example. But something probably would have happened here!',
+          );
         },
       },
       {
         name: 'OR you can do this.',
         description: 'but you can only do one!',
         action: () => {
-          alert('This is just an example. But something probably would have happened here!');
+          state.openDialog(
+            'Bonus Action 2',
+            'This is just an example. But something probably would have happened here!',
+          );
         },
       },
     ],
@@ -135,11 +143,12 @@ export const PAGES = [
       'The trees press closer here, and the air is cooler. Strange shadows dance in your peripheral vision. The path is barely visible, covered in fallen leaves and twisted roots.',
     background_color: '#006400',
     actions: [
+      //(Hint for Amulet of Whispering Woods quest)
       {
         name: 'Examine Strange Markings on a Tree',
         description: 'You notice some odd carvings on an ancient, gnarled oak.',
         effect:
-          "The markings are old and weathered, forming symbols you don't recognize. They seem to point towards a barely perceptible trail leading off the main path. You feel a faint thrum of old magic. (Hint for Amulet of Whispering Woods quest)",
+          "The markings are old and weathered, forming symbols you don't recognize. They seem to point towards a barely perceptible trail leading off the main path. You feel a faint thrum of old magic.",
       },
       {
         name: 'Listen to the Forest',
@@ -970,7 +979,8 @@ export const PAGES = [
       {
         name: 'Collect Glowing Moss',
         description: 'Gather some of the glowing moss.',
-        effect: 'You carefully scrape some of the moss into your pouch. It provides a dim, but steady light.',
+        effect:
+          'You carefully scrape some of the [glowing_moss_clump] into your pouch. It provides a dim, but steady light.',
       },
     ],
     links: [
