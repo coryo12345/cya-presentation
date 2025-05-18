@@ -17,24 +17,24 @@
       <div v-if="props.page.actions?.length && canTakeAction" class="flex flex-wrap justify-center gap-4">
         <button
           v-for="action in page.actions"
-          :key="action.text"
+          :key="action.name"
           class="rounded-lg px-4 py-2 border border-black cursor-pointer"
           :class="action.backgroundColor ? `bg-${action.backgroundColor}` : 'bg-slate-600'"
           @click="takeAction(action)"
         >
-          <div class="text-2xl">{{ action.text }}</div>
+          <div class="text-2xl">{{ action.name }}</div>
           <div v-if="action.description" class="text-sm whitespace-pre-line">{{ action.description }}</div>
         </button>
       </div>
       <div class="flex flex-wrap justify-center gap-4">
         <button
           v-for="link in page.links"
-          :key="link.pageId"
+          :key="link.name"
           class="rounded-lg px-4 py-2 border border-black cursor-pointer"
           :class="link.backgroundColor ? `bg-${link.backgroundColor}` : 'bg-amber-900'"
-          @click="emit('go', link.pageId)"
+          @click="emit('go', link.link_to)"
         >
-          <div class="text-2xl">{{ link.text }}</div>
+          <div class="text-2xl">{{ link.name }}</div>
           <div v-if="link.description" class="text-sm whitespace-pre-line">{{ link.description }}</div>
         </button>
       </div>
