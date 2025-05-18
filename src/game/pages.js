@@ -1,3 +1,6 @@
+import { ITEM_MAP } from '@/game/items';
+import { state } from '@/game/state';
+
 /**
  * @typedef {Object} PageLink
  * @property {string} text
@@ -79,7 +82,7 @@ export const PAGES = [
       {
         text: 'Take the sword',
         action: () => {
-          alert('You take the sword');
+          state.addItem(ITEM_MAP.sword);
         },
       },
     ],

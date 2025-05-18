@@ -1,6 +1,7 @@
 import { PAGES } from '@/game/pages';
 import { useStorage } from '@vueuse/core';
 import { reactive } from 'vue';
+import { ITEM_MAP } from './items';
 
 const storedState = useStorage('cyoa-app', {
   /** @type {string[]} */
@@ -33,12 +34,16 @@ export const state = reactive({
     return storedState.value.inventory.map((id) => ITEM_MAP[id]);
   },
   /**
-   * @param {string} itemId
+   * @param {string | object} item
    * @param {number} count
    */
-  addItem(itemId, count = 1) {
+  addItem(item, count = 1) {
     for (let i = 0; i < count; i++) {
-      storedState.value.inventory.push(itemId);
+      if (typeof item === 'object') {
+        storedState.value.inventory.push(item.id);
+      } else {
+        storedState.value.inventory.push(item);
+      }
     }
   },
   /**
