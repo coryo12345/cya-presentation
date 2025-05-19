@@ -8,6 +8,8 @@ import { ITEM_MAP } from './items';
 
 // TODO - when showing page descriptions, interpolate item names
 
+// TODO - oakhaven square. Need an option to put a background on title/description
+
 const storedState = useStorage('cyoa-app', {
   /** @type {string[]} */
   history: ['tutorial'],
