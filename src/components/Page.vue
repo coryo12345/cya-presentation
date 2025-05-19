@@ -4,13 +4,13 @@
       class="fixed top-0 left-0 right-0 bottom-0 w-full h-full bg-cover bg-center bg-no-repeat"
       :style="pageStyle"
     ></div>
-    <div class="relative text-white p-8 flex flex-col justify-between gap-4 h-full">
-      <div class="flex justify-between gap-4 ml-4 mx-8">
-        <div>
+    <div class="relative p-8 flex flex-col justify-between gap-4 h-full text-white">
+      <div class="flex justify-between gap-4 ml-4 mx-8" :class="props.page.invert ? 'text-black' : 'text-white'">
+        <div class="flex-2/3">
           <h2 class="text-4xl">{{ page.title }}</h2>
           <p>{{ page.description }}</p>
         </div>
-        <div v-if="sideImg" class="w-1/3">
+        <div v-if="sideImg" class="flex-1/3">
           <img :src="sideImg" class="max-h-[200px] rounded-lg ml-auto" />
         </div>
       </div>
@@ -18,7 +18,7 @@
         <button
           v-for="action in page.actions"
           :key="action.name"
-          class="rounded-lg px-4 py-2 border border-black cursor-pointer"
+          class="rounded-lg px-4 py-2 border border-black cursor-pointer w-[300px]"
           :class="action.backgroundColor ? `bg-${action.backgroundColor}` : 'bg-slate-600'"
           @click="takeAction(action)"
         >
@@ -30,7 +30,7 @@
         <button
           v-for="link in page.links"
           :key="link.name"
-          class="rounded-lg px-4 py-2 border border-black cursor-pointer"
+          class="rounded-lg px-4 py-2 border border-black cursor-pointer w-[300px]"
           :class="link.backgroundColor ? `bg-${link.backgroundColor}` : 'bg-amber-900'"
           @click="emit('go', link.link_to)"
         >
@@ -63,7 +63,7 @@ const emit = defineEmits(['go']);
 
 const pageStyle = computed(() => {
   if (props.page.image && !props.page.backgroundColor) {
-    return `background-image: url(${props.page.image}); filter: blur(${props.page.blur ?? 0}px);`;
+    return `background-image: url(${props.page.image}); filter: blur(${props.page.blur ?? 0}px); transform: scale(1.05)`;
   }
   return `background-color: ${props.page.backgroundColor ?? 'slategray'}`;
 });
@@ -82,8 +82,6 @@ const takeAction = (action) => {
   if (typeof action.action === 'function') {
     action.action();
   } else if (action.effect) {
-    // TODO - look for item name in brakcets, e.g. [copper_coin]
-    // if found, add that item to inventory, and swap name to item.name
     const itemName = action.effect.match(/\[([^\]]+)\]/)?.[1];
     let effect = action.effect;
     if (itemName) {

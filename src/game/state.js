@@ -3,6 +3,11 @@ import { useStorage } from '@vueuse/core';
 import { reactive } from 'vue';
 import { ITEM_MAP } from './items';
 
+// TODO - history needs to be more detailed. What bonus action was taken?
+// that way we can add a back button. And refreshing will maintain state
+
+// TODO - when showing page descriptions, interpolate item names
+
 const storedState = useStorage('cyoa-app', {
   /** @type {string[]} */
   history: ['tutorial'],
@@ -19,7 +24,12 @@ export const state = reactive({
    * @returns {import('@/game/pages').Page}
    */
   get currentPage() {
-    return PAGES.find((page) => page.id === storedState.value.history[storedState.value.history.length - 1]);
+    let page = PAGES.find((page) => page.id === storedState.value.history[storedState.value.history.length - 1]);
+    while (!page) {
+      storedState.value.history.pop();
+      page = PAGES.find((page) => page.id === storedState.value.history[storedState.value.history.length - 1]);
+    }
+    return page;
   },
   /**
    * @param {string} pageId

@@ -27,6 +27,7 @@ import { state } from './state';
  * @property {string} description
  * @property {string} [image]
  * @property {number} [blur]
+ * @property {boolean} [invert]
  * @property {string} [backgroundColor]
  * @property {PageLink[]} [links]
  * @property {PageAction[]} [actions]
@@ -81,7 +82,8 @@ export const PAGES = [
     title: 'Forest Path - Awakening',
     description:
       'You awaken with a gasp, lying on damp earth. Towering trees form a dense canopy overhead, filtering the sunlight into dappled patterns. A narrow, overgrown path stretches to your left and right. Your head throbs, and you have no memory of how you arrived here.',
-    background_color: '#228B22',
+    image: 'https://cdn.pixabay.com/photo/2018/01/19/09/17/tree-3092026_1280.jpg',
+    blur: 10,
     actions: [
       {
         name: 'Look Around Carefully',
@@ -109,7 +111,8 @@ export const PAGES = [
     title: 'Riverbank',
     description:
       "The path ends abruptly at the bank of a wide, swiftly flowing river. The water is clear enough to see the rocky bottom. There's no obvious way to cross here.",
-    background_color: '#6495ED',
+    image: 'https://cdn.pixabay.com/photo/2021/08/29/15/43/torrent-6583626_1280.jpg',
+    blur: 10,
     actions: [
       {
         name: 'Look in the River',
@@ -141,7 +144,7 @@ export const PAGES = [
     title: 'Deeper Forest Path',
     description:
       'The trees press closer here, and the air is cooler. Strange shadows dance in your peripheral vision. The path is barely visible, covered in fallen leaves and twisted roots.',
-    background_color: '#006400',
+    backgroundColor: '#006400',
     actions: [
       //(Hint for Amulet of Whispering Woods quest)
       {
@@ -180,13 +183,15 @@ export const PAGES = [
     title: 'Upstream Rapids',
     description:
       'The river here is a torrent of white water crashing over jagged rocks. The air is filled with mist and the roar of the rapids. The path along the bank is treacherous.',
-    background_color: '#4682B4',
+    backgroundColor: '#4682B4',
+    image: 'https://cdn.pixabay.com/photo/2020/04/02/12/06/water-4994814_1280.jpg',
+    blur: 10,
     actions: [
       {
         name: 'Examine Glittering Rocks',
         description: "Carefully inspect the rocks near the water's edge, something catches your eye.",
         effect:
-          'Among the wet stones, you find a small, unusually vibrant [glowing_crystal_shard_cave]. It pulses with a soft, inner light. (Hint for Secret of the Glimmering Caves quest)',
+          'Among the wet stones, you find a small, unusually vibrant [glowing_crystal_shard_cave]. It pulses with a soft, inner light.',
       },
     ],
     links: [
@@ -207,13 +212,15 @@ export const PAGES = [
     title: "River's Calm Bend",
     description:
       "The river slows here, widening into a peaceful bend. Reeds grow thickly along the banks, and dragonflies skim the water's surface. It's a surprisingly tranquil spot.",
-    background_color: '#ADD8E6',
+    image: 'https://cdn.pixabay.com/photo/2021/10/13/12/33/forest-6706559_1280.jpg',
+    blur: 8,
     actions: [
+      // (Hint for The Shadow of Oakhaven quest)
       {
         name: 'Inspect a Washed-Up Satchel',
         description: 'You notice a small, waterlogged leather satchel caught in the reeds.',
         effect:
-          "Inside, you find a [waterlogged_plea]. Most of it is illegible, but you can make out the words 'Oakhaven' and 'shadow'. (Hint for The Shadow of Oakhaven quest)",
+          "Inside, you find a [waterlogged_plea]. Most of it is illegible, but you can make out the words 'Oakhaven' and 'shadow'.",
       },
     ],
     links: [
@@ -234,7 +241,7 @@ export const PAGES = [
     title: 'Forest Crossroads',
     description:
       'The path opens into a small clearing where several tracks converge. A weathered, unreadable signpost stands crookedly in the center. You feel a sense of choice here.',
-    background_color: '#D2B48C',
+    backgroundColor: '#D2B48C',
     actions: [
       {
         name: 'Talk to the Travelling Merchant (Elara)',
@@ -271,7 +278,7 @@ export const PAGES = [
     title: 'Forest Clearing',
     description:
       "This small, sun-dappled clearing contains a simple, well-kept woodsman's cabin with a thin trail of smoke curling from its chimney. Stacks of chopped firewood are piled neatly nearby.",
-    background_color: '#90EE90',
+    backgroundColor: '#90EE90',
     actions: [
       {
         name: 'Approach the Cabin',
@@ -293,7 +300,7 @@ export const PAGES = [
     title: "Hermit's Clearing Approach",
     description:
       'The faint trail opens into a small, secluded clearing. A dilapidated hut stands in the center, a wisp of smoke rising from its chimney. Strange totems and wind chimes made of bone and wood hang from the surrounding trees.',
-    background_color: '#556B2F',
+    backgroundColor: '#556B2F',
     actions: [
       {
         name: 'Observe the Hut',
@@ -320,7 +327,7 @@ export const PAGES = [
     title: "Hermit's Hut",
     description:
       "You stand before the strange hut. An old, wizened figure in patched robes emerges, eyes sharp and observant. 'Few find their way to my door. State your purpose, or be on your way.'",
-    background_color: '#8FBC8F',
+    backgroundColor: '#8FBC8F',
     actions: [
       {
         name: 'Ask about the Amulet of Whispering Woods',
@@ -348,7 +355,7 @@ export const PAGES = [
     title: 'Whispering Woods Entrance',
     description:
       "Following the Hermit's map, you arrive at the edge of an ancient, unnaturally silent forest. The trees are gnarled and twisted, and a palpable sense of unease hangs in the air. This is the Whispering Woods. The path on your map leads into the gloom.",
-    background_color: '#2F4F4F',
+    backgroundColor: '#2F4F4F',
     actions: [
       {
         name: "Listen to the 'Whispers'",
@@ -375,7 +382,7 @@ export const PAGES = [
     title: 'Path Through Whispering Woods',
     description:
       "The woods are a labyrinth of shadows and half-seen movements. The whispers are constant now, trying to confuse you. You rely on the Hermit's map to stay on course towards the temple ruins.",
-    background_color: '#1A3A3A',
+    backgroundColor: '#1A3A3A',
     actions: [
       {
         name: "Consult the Hermit's Talisman",
@@ -403,7 +410,7 @@ export const PAGES = [
     title: 'Lost in the Whispering Woods',
     description:
       'The shortcut was a mistake. The whispers intensify, and the trees all look the same. Your map seems useless here, and a sense of dread washes over you. You are lost.',
-    background_color: '#0D1F1F',
+    backgroundColor: '#0D1F1F',
     actions: [
       {
         name: 'Try to find the Sun',
@@ -430,7 +437,7 @@ export const PAGES = [
     title: 'Temple Ruins Approach',
     description:
       'The trees begin to thin, and you see crumbling stone walls ahead – the ruins of the Temple of Sylvandell. A heavy silence, broken only by the wind whistling through cracks in the masonry, replaces the whispers. The main entrance appears to be a sunken courtyard.',
-    background_color: '#4A5D5A',
+    backgroundColor: '#4A5D5A',
     links: [
       {
         name: 'Enter the Sunken Courtyard (LOCK-IN POINT)',
@@ -454,7 +461,7 @@ export const PAGES = [
     title: 'Temple Perimeter',
     description:
       'You circle the crumbling outer walls of the temple. Most are too high to climb or offer no entry. You find a small, discarded pouch near a collapsed section.',
-    background_color: '#5A6D6A',
+    backgroundColor: '#5A6D6A',
     actions: [
       {
         name: 'Search the Pouch',
@@ -474,7 +481,7 @@ export const PAGES = [
     title: 'Temple Courtyard (Locked In)',
     description:
       "You stand in a dilapidated courtyard. As you step onto the central flagstone, there's a deep groan and the sound of grinding stone behind you. The way you came is now blocked by a massive stone slab that has fallen from the archway! You are trapped within the temple.",
-    background_color: '#3B4D4A',
+    backgroundColor: '#3B4D4A',
     links: [
       {
         name: 'Enter the Main Temple Hall',
@@ -493,7 +500,7 @@ export const PAGES = [
     title: 'Temple Main Hall',
     description:
       "The main hall is vast and echoing. Fallen pillars and rubble litter the floor. At the far end, a raised dais holds a pedestal, but it's currently empty. Strange symbols cover the walls.",
-    background_color: '#2A3D3A',
+    backgroundColor: '#2A3D3A',
     actions: [
       {
         name: 'Examine the Symbols',
@@ -520,7 +527,7 @@ export const PAGES = [
     title: 'Side Chapel - Sunstone Puzzle',
     description:
       'This smaller chapel is dimly lit by a crack in the ceiling. In the center is a stone altar with a circular depression. The walls are covered in carvings of suns and moons.',
-    background_color: '#334643',
+    backgroundColor: '#334643',
     actions: [
       {
         name: 'Search the Altar',
@@ -546,7 +553,7 @@ export const PAGES = [
     title: 'Side Chapel - Mechanism Activated',
     description:
       'Placing the Sunstone Key into the depression causes a soft click. A section of the wall slides open, revealing a dusty alcove. Inside, you find an [ancient_lever_handle] and a [reflective_shard_mirror].',
-    background_color: '#334643',
+    backgroundColor: '#334643',
     links: [
       {
         name: 'Take the Items and Return to the Main Hall',
@@ -559,7 +566,7 @@ export const PAGES = [
     title: 'Temple Dais - Riddle of Light',
     description:
       "You stand before the empty pedestal on the dais. An inscription reads: 'Only by reflecting truth can the path be opened.' There's a slot that looks like it could fit the [ancient_lever_handle]. Opposite the dais, a beam of light shines from a high window onto a specific floor tile.",
-    background_color: '#2A3D3A',
+    backgroundColor: '#2A3D3A',
     actions: [
       {
         name: 'Use Reflective Shard (Requires Reflective Shard)',
@@ -599,7 +606,7 @@ export const PAGES = [
     title: 'Secret Chamber - The Amulet',
     description:
       'With a grinding sound, the pedestal on the dais sinks into the floor, revealing a hidden staircase descending into darkness. At the bottom, a small, ornate chamber is lit by glowing crystals. Upon a velvet cushion rests the [amulet_sylvandell_dormant].',
-    background_color: '#1C2B2A',
+    backgroundColor: '#1C2B2A',
     links: [
       {
         name: 'Take the Amulet',
@@ -618,7 +625,7 @@ export const PAGES = [
     title: "The Amulet's Power (Win Game)",
     description:
       'As your fingers close around the [amulet_sylvandell_dormant], it flares with a brilliant light, becoming the [amulet_sylvandell_awakened]. A wave of energy washes over you, invigorating and empowering. You feel a connection to the ancient magic of this place. A hidden passage grinds open, leading out of the temple into sunlight. You have succeeded!',
-    background_color: '#FFFACD',
+    backgroundColor: '#FFFACD',
     links: [
       {
         name: 'Exit the Temple (VICTORY!)',
@@ -631,7 +638,7 @@ export const PAGES = [
     title: 'A Noble Choice (Win Game)',
     description:
       "You decide against taking the amulet, sensing its volatile power. As you turn to leave, a soft voice echoes: 'Wisdom is its own reward.' The way out of the temple magically unseals, and you step back into the Whispering Woods, changed by your experience. The Hermit, if you meet them again, will commend your choice.",
-    background_color: '#E0FFFF',
+    backgroundColor: '#E0FFFF',
     links: [
       {
         name: 'Exit the Temple (VICTORY!)',
@@ -644,7 +651,7 @@ export const PAGES = [
     title: 'GAME OVER - Lost to the Whispers',
     description:
       'Days turn into nights as you wander aimlessly. The whispers become your only companions, driving you to madness. You succumb to the darkness of the Whispering Woods, never to be seen again.',
-    background_color: '#000000',
+    backgroundColor: '#000000',
     links: [
       {
         name: 'Try Again?',
@@ -657,7 +664,7 @@ export const PAGES = [
     title: 'GAME OVER - Crushing Defeat',
     description:
       'You pull the lever without understanding its purpose. The floor beneath you groans, then gives way! You plummet into a dark, spike-filled pit. Your adventure ends here.',
-    background_color: '#000000',
+    backgroundColor: '#000000',
     links: [
       {
         name: 'Try Again?',
@@ -670,7 +677,8 @@ export const PAGES = [
     title: 'Oakhaven Outskirts',
     description:
       "You approach the village of Oakhaven. Ramshackle fences line a muddy track leading towards simple wooden houses. A pall of unease hangs in the air; it's unnaturally quiet, and the few villagers you see hurry indoors, casting suspicious glances.",
-    background_color: '#A0522D',
+    backgroundColor: '#A0522D',
+    image: '/medieval-village.jpg',
     links: [
       {
         name: 'Enter the Village Square',
@@ -681,6 +689,11 @@ export const PAGES = [
         name: 'Examine the Notice Board',
         description: "There's a weathered notice board near the village entrance.",
         link_to: 'oakhaven_notice_board_Q2',
+      },
+      {
+        name: 'Head to the Old Mill',
+        description: 'The old mill is within sight.',
+        link_to: 'oakhaven_mill_exterior_Q2',
       },
       {
         name: 'Leave Oakhaven',
@@ -694,7 +707,7 @@ export const PAGES = [
     title: 'Oakhaven Notice Board',
     description:
       "The notice board has a few tattered posters. One offers a reward for a lost locket. Another is a stern warning from the Mayor about 'rumormongering and consorting with outsiders.' A newer, hastily scrawled note mentions 'strange noises from the old mill.'",
-    background_color: '#SADDLEBROWN',
+    backgroundColor: 'SADDLEBROWN',
     actions: [
       {
         name: "Take note of the 'Lost Locket'",
@@ -719,7 +732,9 @@ export const PAGES = [
     title: 'Oakhaven Village Square',
     description:
       "The square is dusty and mostly empty. A few closed market stalls stand forlornly. The largest buildings are the Mayor's House and the 'Sleeping Dragon' Inn, though the inn looks closed. Fearful eyes watch you from darkened windows.",
-    background_color: '#CD853F',
+    image: 'medieval-village.jpg',
+    blur: 10,
+    invert: true,
     actions: [
       {
         name: 'Try the Inn Door',
@@ -729,17 +744,20 @@ export const PAGES = [
       },
     ],
     links: [
+      // TODO - should allow player to buy lockpick
       {
-        name: "Approach the Mayor's House",
-        link_to: 'oakhaven_mayor_house_exterior_Q2',
+        name: 'Visit the General Store (NYI)',
+        link_to: 'oakhaven_general_store_Q2',
       },
+      // TODO - NYI
       {
-        name: 'Investigate a Suspicious Alleyway',
+        name: 'Investigate a Suspicious Alleyway (NYI)',
         link_to: 'oakhaven_alley_Q2',
       },
       {
-        name: 'Visit the General Store (if you heard about it)',
-        link_to: 'oakhaven_general_store_Q2',
+        name: 'Go to the Chapel',
+        description: 'The old chapel is nearby.',
+        link_to: 'oakhaven_chapel_exterior_Q2',
       },
       {
         name: 'Return to Oakhaven Outskirts',
@@ -748,37 +766,11 @@ export const PAGES = [
     ],
   },
   {
-    id: 'oakhaven_mayor_house_exterior_Q2',
-    title: "Mayor's House Exterior",
-    description:
-      "The Mayor's house is the largest and best-kept building in Oakhaven, though even it seems subdued. Curtains are drawn tight. A stern-looking guard stands by the door.",
-    background_color: '#B8860B',
-    actions: [
-      {
-        name: 'Speak to the Guard',
-        description: 'Try to get information from the guard.',
-        effect:
-          "The guard eyes you suspiciously. 'The Mayor is busy. State your business or move along.' He's uncooperative unless you have a compelling reason (like evidence or a specific appointment).",
-      },
-    ],
-    links: [
-      {
-        name: 'Attempt to Enter (Requires good reason or lockpick at night)',
-        description: "Try to get inside the Mayor's house.",
-        link_to: 'oakhaven_mayor_house_interior_Q2',
-      },
-      {
-        name: 'Return to the Square',
-        link_to: 'oakhaven_square_Q2',
-      },
-    ],
-  },
-  {
     id: 'oakhaven_mill_exterior_Q2',
     title: 'Old Mill Exterior',
     description:
       "The old watermill stands by a stagnant creek on the edge of the village. It's dilapidated, and the water wheel is still. A faint, unsettling scratching sound comes from within.",
-    background_color: '#8B4513',
+    backgroundColor: '#8B4513',
     links: [
       {
         name: 'Enter the Old Mill',
@@ -796,7 +788,7 @@ export const PAGES = [
     title: 'Old Mill Interior',
     description:
       "Inside, the mill is choked with dust and cobwebs. The air is heavy and smells of decay. You find a discarded [villagers_diary_oakhaven] half-hidden under a pile of sacks. It details strange meetings and growing fear of a 'Shadow Master.'",
-    background_color: '#5A3A1A',
+    backgroundColor: '#5A3A1A',
     actions: [
       {
         name: "Read the Villager's Diary",
@@ -806,6 +798,7 @@ export const PAGES = [
       },
     ],
     links: [
+      // TODO - this should be a condition to check if the player has the diary
       {
         name: 'Search for the Forbidden Cellar (Chapel)',
         description: 'The diary mentioned a cellar under the chapel...',
@@ -822,13 +815,15 @@ export const PAGES = [
     title: 'Old Chapel Exterior',
     description:
       "The village chapel is a small, stone building with boarded-up windows. It looks abandoned, but you feel a strange coldness emanating from it. There's a heavy oak door at the front and a smaller, overgrown path leading around the back.",
-    background_color: '#708090',
+    backgroundColor: '#708090',
     links: [
+      // TODO - NYI, maybe show dialog (it's bolted shut & can't be picked)
       {
-        name: 'Try the Front Door',
+        name: 'Try the Front Door (NYI)',
         description: "It's likely locked.",
         link_to: 'oakhaven_chapel_locked_Q2',
       },
+      // TODO only show this if the player has the diary
       {
         name: 'Look for the Cellar Entrance around the Back',
         description: 'The diary mentioned a cellar.',
@@ -845,26 +840,14 @@ export const PAGES = [
     title: 'Forbidden Cellar Entrance',
     description:
       "Behind the chapel, hidden by overgrown bushes, you find a heavy, iron-bound cellar door, secured with a thick chain and a rusty padlock. A strange symbol, matching the one from the medallion if you've seen it, is carved into the wood.",
-    background_color: '#465058',
-    actions: [
-      {
-        name: 'Use Lockpick (Requires Lockpick Set)',
-        description: 'Attempt to pick the padlock on the cellar door.',
-        condition_item: 'lockpick_set',
-        effect: 'With some effort, the old lock clicks open! The chain falls away.',
-      },
-    ],
+    backgroundColor: '#465058',
     links: [
+      // (LOCK-IN POINT)
+      // TODO - confirmation dialog? this is a big choice
       {
-        name: 'Enter the Forbidden Cellar (LOCK-IN POINT)',
+        name: 'Enter the Forbidden Cellar',
         description: 'Descend into the darkness beneath the chapel.',
-        condition_unlocked_by_action: true,
         link_to: 'oakhaven_forbidden_cellar_Q2',
-      },
-      {
-        name: 'Find another way (e.g. confront Mayor)',
-        description: 'Perhaps the Mayor knows about this, or has a key.',
-        link_to: 'oakhaven_mayor_house_exterior_Q2',
       },
       {
         name: 'Leave the Cellar Entrance',
@@ -877,7 +860,7 @@ export const PAGES = [
     title: 'The Forbidden Cellar (Locked In)',
     description:
       "The air in the cellar is frigid and rank with the smell of decay and something else... something cloyingly sweet. Flickering torchlight from deeper within reveals a ritual chamber. Hooded figures chant around a dark altar. You've stumbled upon the heart of Oakhaven's shadow.",
-    background_color: '#2C3E50',
+    backgroundColor: '#2C3E50',
     links: [
       {
         name: 'Confront the Cultists',
@@ -896,7 +879,7 @@ export const PAGES = [
     title: 'Confrontation with the Shadow Cult',
     description:
       "The cultists turn, their faces hidden in shadow. Their leader, a tall figure holding a staff topped with a [strange_symbol_medallion], steps forward. 'Another fool stumbles into the Master's embrace!' Combat is not your strength, but perhaps words or a specific item can help.",
-    background_color: '#1A2430',
+    backgroundColor: '#1A2430',
     actions: [
       {
         name: 'Use Silver Dagger (Requires Silver Dagger)',
@@ -931,7 +914,7 @@ export const PAGES = [
     title: 'The Shadow Banished (Win Game)',
     description:
       'Using the blessed items, you manage to disrupt the ritual and shatter the dark altar. A piercing shriek echoes as the shadowy presence dissipates. The cultists collapse or flee in terror. Oakhaven is saved, thanks to you. The villagers, though shaken, hail you as their hero.',
-    background_color: '#E6E6FA',
+    backgroundColor: '#E6E6FA',
     links: [
       {
         name: 'Celebrate with Oakhaven (VICTORY!)',
@@ -944,7 +927,7 @@ export const PAGES = [
     title: 'GAME OVER - Consumed by Shadow',
     description:
       "The cultists overwhelm you. The last thing you see is the leader's shadowy face as you are dragged towards the altar. Oakhaven falls completely into darkness, and you become another offering to the Shadow Master.",
-    background_color: '#000000',
+    backgroundColor: '#000000',
     links: [
       {
         name: 'Try Again?',
@@ -957,7 +940,7 @@ export const PAGES = [
     title: 'Mountain Foothills',
     description:
       'The path from the crossroads has led you to the rugged foothills of a mountain range. The air is thin and crisp. You spot a dark opening in the mountainside – a possible cave entrance.',
-    background_color: '#A9A9A9',
+    backgroundColor: '#A9A9A9',
     links: [
       {
         name: 'Approach the Cave Entrance',
@@ -974,7 +957,7 @@ export const PAGES = [
     title: 'Glimmering Cave Entrance',
     description:
       'You stand before a dark fissure in the mountainside, partially hidden by thorny bushes. A faint, cool breeze emanates from within, carrying the scent of damp stone and something else... a subtle, metallic tang. Patches of [glowing_moss_clump] grow around the entrance.',
-    background_color: '#696969',
+    backgroundColor: '#696969',
     actions: [
       {
         name: 'Collect Glowing Moss',
@@ -1006,7 +989,7 @@ export const PAGES = [
     title: 'Cave - Entry Passage',
     description:
       'The passage is narrow and damp. Your footsteps echo eerily. The only light comes from your [glowing_moss_clump] or [torch], revealing walls slick with moisture and strange, pale fungi. The air grows colder.',
-    background_color: '#36454F',
+    backgroundColor: '#36454F',
     links: [
       {
         name: 'Press Deeper into the Cave',
@@ -1023,7 +1006,7 @@ export const PAGES = [
     title: 'Cave - Echoing Chamber',
     description:
       'The passage opens into a vast chamber. Your voice echoes strangely. Water drips from unseen stalactites. Several tunnels lead off in different directions. You see faint glimmers of light from one of the tunnels.',
-    background_color: '#2F3E4A',
+    backgroundColor: '#2F3E4A',
     actions: [
       {
         name: "Use Miner's Pickaxe on Loose Rocks (Requires Pickaxe)",
@@ -1056,7 +1039,7 @@ export const PAGES = [
     title: 'Cave - Crystal Lined Path',
     description:
       'This tunnel glows with an ethereal blue light from veins of crystals embedded in the walls. The air hums with a faint energy. The path slopes gently downwards.',
-    background_color: '#483D8B',
+    backgroundColor: '#483D8B',
     links: [
       {
         name: 'Continue Down the Crystal Path',
@@ -1073,7 +1056,7 @@ export const PAGES = [
     title: 'Cave - The Great Cavern',
     description:
       'You emerge into a breathtaking cavern. Massive crystals jut from the floor and ceiling, pulsing with soft light. In the center of the cavern is a raised platform with an ancient, crystalline keystone. A deep chasm splits the far side of the cavern, too wide to jump.',
-    background_color: '#6A5ACD',
+    backgroundColor: '#6A5ACD',
     actions: [
       {
         name: 'Examine the Keystone',
@@ -1112,7 +1095,7 @@ export const PAGES = [
     title: 'Cave - Keystone Activated (Locked In)',
     description:
       'As you activate the keystone, it flares with intense light. The entire cavern hums with power. A section of the cavern wall slides open, revealing a new passage, but behind you, the crystal path back collapses with a deafening roar! There is no going back the way you came.',
-    background_color: '#7B68EE',
+    backgroundColor: '#7B68EE',
     links: [
       {
         name: 'Enter the Newly Opened Passage',
@@ -1125,7 +1108,7 @@ export const PAGES = [
     title: 'Cave - Ancient Mechanism Room',
     description:
       "This chamber houses a colossal, ancient mechanism made of interlocking crystals and stone gears. It's currently inert. Consoles with runic inscriptions and empty sockets are visible. You might need specific items like the [runed_tablet_fragment_cave] or the [lens_true_sight_cave] to understand it.",
-    background_color: '#8A2BE2',
+    backgroundColor: '#8A2BE2',
     actions: [
       {
         name: 'Use Lens of True Sight (Requires Lens)',
@@ -1159,7 +1142,7 @@ export const PAGES = [
     title: 'Cave - The Heartstone Chamber (Win Game)',
     description:
       'The ancient mechanism groans to life, and a hidden door irises open, revealing the Heartstone Chamber. A colossal, perfectly formed crystal, the [heartstone_gem_cave], floats in the center, radiating immense power and bathing the room in a kaleidoscope of light. You feel its ancient, benign energy.',
-    background_color: '#9932CC',
+    backgroundColor: '#9932CC',
     links: [
       {
         name: 'Commune with the Heartstone',
@@ -1173,7 +1156,7 @@ export const PAGES = [
     title: 'GAME OVER - Entombed',
     description:
       'Your clumsy tampering with the ancient mechanism proves disastrous. With a terrible grinding noise, the chamber begins to shake violently. Rocks fall from the ceiling, and the exit collapses. You are trapped and entombed forever in the silent dark.',
-    background_color: '#000000',
+    backgroundColor: '#000000',
     links: [
       {
         name: 'Try Again?',
@@ -1186,7 +1169,7 @@ export const PAGES = [
     title: "VICTORY! - The Amulet's Chosen",
     description:
       'You emerged from the Temple of Sylvandell, the Amulet of Sylvandell now a part of your destiny. Its power flows through you, a beacon against the shadows of the world. Your quest is complete!',
-    background_color: '#FFD700',
+    backgroundColor: '#FFD700',
     links: [
       {
         name: 'Start a New Adventure?',
@@ -1199,7 +1182,7 @@ export const PAGES = [
     title: "VICTORY! - Wisdom's Reward",
     description:
       'You chose wisdom over power, leaving the Amulet undisturbed. The ancient spirits of the temple recognized your noble heart. You leave the Whispering Woods with a profound sense of peace and accomplishment. Your quest is complete!',
-    background_color: '#AFEEEE',
+    backgroundColor: '#AFEEEE',
     links: [
       {
         name: 'Start a New Adventure?',
@@ -1212,7 +1195,7 @@ export const PAGES = [
     title: 'VICTORY! - Savior of Oakhaven',
     description:
       'The shadow over Oakhaven has been lifted, thanks to your bravery and detective skills. The village rejoices, and your name will be sung in local tales for years to come. Your quest is complete!',
-    background_color: '#90EE90',
+    backgroundColor: '#90EE90',
     links: [
       {
         name: 'Start a New Adventure?',
@@ -1225,7 +1208,7 @@ export const PAGES = [
     title: 'VICTORY! - Master of the Glimmering Caves',
     description:
       'You have reached the Heartstone and communed with the ancient magic of the Glimmering Caves. You leave with newfound understanding and a sense of wonder. The secrets of the cave are safe with you. Your quest is complete!',
-    background_color: '#DA70D6',
+    backgroundColor: '#DA70D6',
     links: [
       {
         name: 'Start a New Adventure?',

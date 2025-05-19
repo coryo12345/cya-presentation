@@ -118,7 +118,7 @@ export const ITEMS = [
   },
   {
     id: 'glowing_crystal_shard_cave',
-    name: 'Glowing Crystal Shard (Cave)',
+    name: 'Glowing Crystal Shard',
     description: 'A vibrant, fist-sized crystal that pulses with a rhythmic blue light. It emits a faint hum.',
   },
   {
@@ -128,7 +128,7 @@ export const ITEMS = [
   },
   {
     id: 'runed_tablet_fragment_cave',
-    name: 'Runed Tablet Fragment (Cave)',
+    name: 'Runed Tablet Fragment',
     description: 'A piece of an ancient stone tablet covered in glowing runes you cannot decipher... yet.',
   },
   {

@@ -1,7 +1,7 @@
 <template>
   <div
     v-bind="$attrs"
-    class="w-12 h-12 text-white rounded-lg bg-gray-800 p-0 opacity-30 cursor-pointer"
+    class="w-12 h-12 text-white rounded-lg bg-gray-800 p-1 opacity-30 cursor-pointer"
     @click="show = true"
   >
     <BackpackIcon></BackpackIcon>
