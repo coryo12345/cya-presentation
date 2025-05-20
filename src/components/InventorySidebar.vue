@@ -30,7 +30,7 @@
           :key="item.id"
           class="flex justify-start items-start gap-4 hover:bg-gray-600 transition-colors cursor-pointer rounded-lg p-2 w-full"
         >
-          <div class="aspect-square w-32 bg-gray-700 rounded-lg p-2">
+          <div class="aspect-square w-28 h-28 bg-gray-700 rounded-lg p-2">
             <img :src="item.image" :alt="item.name" class="w-full h-full object-contain" />
           </div>
           <div class="text-white">

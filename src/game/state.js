@@ -3,16 +3,11 @@ import { useStorage } from '@vueuse/core';
 import { reactive } from 'vue';
 import { ITEM_MAP } from './items';
 
-// TODO - history needs to be more detailed. What bonus action was taken?
-// that way we can add a back button. And refreshing will maintain state
-
-// TODO - when showing page descriptions, interpolate item names
-
-// TODO - oakhaven square. Need an option to put a background on title/description
-
 const storedState = useStorage('cyoa-app', {
   /** @type {string[]} */
   history: ['tutorial'],
+  /** @type {Record<string, string[]>} */
+  actionsTaken: {},
   /** @type {string[]} */
   inventory: [],
 });
@@ -21,6 +16,7 @@ export const state = reactive({
   restart() {
     storedState.value.history = ['tutorial'];
     storedState.value.inventory = [];
+    storedState.value.actionsTaken = {};
   },
   /**
    * @returns {import('@/game/pages').Page}
@@ -32,6 +28,16 @@ export const state = reactive({
       page = PAGES.find((page) => page.id === storedState.value.history[storedState.value.history.length - 1]);
     }
     return page;
+  },
+  /**
+   * Attempts to take a link.
+   * @param {import('@/game/pages').PageLink} link
+   */
+  takeLink(link) {
+    if (typeof link.onLink === 'function' && link.onLink() === false) {
+      return;
+    }
+    this.goTo(link.link_to);
   },
   /**
    * @param {string} pageId
@@ -80,7 +86,60 @@ export const state = reactive({
    */
   openDialog(title, description) {
     this.dialog.show = true;
-    this.dialog.title = title;
-    this.dialog.description = description;
+    this.dialog.title = interpolateItemNames(title, true).text;
+    this.dialog.description = interpolateItemNames(description, true).text;
+  },
+  /**
+   * @param {import('@/game/pages').Page} page
+   * @param {import('@/game/pages').PageAction} action
+   */
+  takeAction(page, action) {
+    if (typeof action.condition === 'function' && !action.condition()) {
+      return;
+    }
+    let lockAction = true;
+    if (typeof action.action === 'function') {
+      if (action.action() === false) {
+        lockAction = false;
+      }
+    } else if (action.effect) {
+      const { text, items } = interpolateItemNames(action.effect, true);
+      if (items.length) {
+        items.forEach((item) => this.addItem(item.id));
+      }
+      this.openDialog(interpolateItemNames(action.name, true).text, text);
+    }
+    if (!storedState.value.actionsTaken[page.id]) {
+      storedState.value.actionsTaken[page.id] = [];
+    }
+    if (lockAction) {
+      storedState.value.actionsTaken[page.id].push(action.name);
+    }
+  },
+  get getAvailableActions() {
+    return (
+      this.currentPage.actions?.filter(
+        (action) =>
+          !storedState.value.actionsTaken[this.currentPage.id]?.includes(action.name) &&
+          (typeof action.condition === 'function' ? action.condition() : true),
+      ) ?? []
+    );
   },
 });
+
+/**
+ * @param {string} text
+ * @returns {{text: string, items: (import('@/game/items').Item)[]}}
+ */
+export function interpolateItemNames(str, useHtml = false) {
+  const items = [];
+  const text = str.replaceAll(/\[(.*)\]/g, (match, name) => {
+    if (!match) return '';
+    const item = ITEM_MAP[name];
+    if (!item) return match;
+    items.push(item);
+    return useHtml ? `<span class="underline italic text-gray-200">${item.name}</span>` : item.name;
+  });
+
+  return { text, items };
+}
