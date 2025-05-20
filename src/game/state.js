@@ -47,6 +47,7 @@ export const state = reactive({
     storedState.value.history = ['tutorial'];
     storedState.value.inventory = [];
     storedState.value.actionsTaken = {};
+    return false;
   },
   /**
    * @returns {import('@/game/pages').Page}
