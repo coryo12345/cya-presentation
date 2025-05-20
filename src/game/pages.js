@@ -786,13 +786,12 @@ export const PAGES = [
   {
     id: 'oakhaven_notice_board_Q2',
     title: 'Oakhaven Notice Board',
-    description:
-      "The notice board has a few tattered posters. One offers a reward for a lost locket. Another is a stern warning from the Mayor about 'rumormongering and consorting with outsiders.' A newer, hastily scrawled note mentions 'strange noises from the old mill.'",
+    description: 'The notice board has a few tattered posters.',
     backgroundColor: 'SADDLEBROWN',
     actions: [
       {
-        name: "Take note of the 'Lost Locket'",
-        description: 'Memorize the description of the locket.',
+        name: 'Notice: Lost Locket',
+        description: 'A note about a missing locket.',
         action: () => {
           state.addItem(ITEM_MAP['lost_locket_pamphlet'].id);
           state.openDialog(
@@ -800,6 +799,14 @@ export const PAGES = [
             "The locket is described as silver, heart-shaped, with a tiny sapphire. It belongs to Martha, the baker's wife.",
           );
         },
+      },
+      {
+        name: 'Mayoral Request',
+        description: 'An urgent request from the Mayor.',
+        effect: 'TODO', // TODO
+      },
+      {
+        // TODO another filler note to build out the world
       },
     ],
     links: [

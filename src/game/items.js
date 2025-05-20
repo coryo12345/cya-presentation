@@ -103,6 +103,11 @@ export const ITEMS = [
     description: "A pamphlet detailing the lost locket that belongs to Martha, the baker's wife",
   },
   {
+    id: 'mayor_request_pamphlet',
+    name: 'Mayoral Request',
+    description: 'The mayor is looking for help to free the town from a curse. He will reward you handsomely.',
+  },
+  {
     id: 'strange_symbol_medallion',
     name: 'Strange Symbol Medallion',
     description: 'A small, tarnished silver medallion bearing an unsettling, unfamiliar symbol.',
