@@ -123,16 +123,16 @@ export const ITEMS = [
     description: 'If the player tossed the [strange_symbol_medallion], this item is used to track that.',
     hidden: true,
   },
-  //   {
-  //     id: 'shadowbane_charm_oakhaven',
-  //     name: 'Shadowbane Charm',
-  //     description: 'A charm made of woven herbs and a piece of blessed metal, said to ward off dark influences.',
-  //   },
-  //   {
-  //     id: 'glowing_crystal_shard_cave',
-  //     name: 'Glowing Crystal Shard',
-  //     description: 'A vibrant, fist-sized crystal that pulses with a rhythmic blue light. It emits a faint hum.',
-  //   },
+  {
+    id: 'shadowbane_charm_oakhaven',
+    name: 'Shadowbane Charm',
+    description: 'A charm made of woven herbs and a piece of blessed metal, said to ward off dark influences.',
+  },
+  {
+    id: 'glowing_crystal_shard_cave',
+    name: 'Glowing Crystal Shard',
+    description: 'A vibrant, fist-sized crystal that pulses with a rhythmic blue light. It emits a faint hum.',
+  },
   //   {
   //     id: 'miners_pickaxe',
   //     name: "Miner's Pickaxe",

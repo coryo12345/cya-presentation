@@ -3,30 +3,33 @@ import { useStorage } from '@vueuse/core';
 import { reactive } from 'vue';
 import { ITEM_MAP } from './items';
 
-// TODO: add a checkpoint system. At any ending, the player can start again from the last checkpoint.
-
 // TODO: add note to noticeboard to go see mayor, help freeing town from curse
-// TODO: add scene with mayor. Explain about some dark cultists that need to be stopped. They are performing rituals, people go missing
-// TODO: After getting past "cultists" (maybe not cultists?) (they have ragged/dirty robes) in chapel, find a scroll. But you can't understand it.
-// TODO: Bring scroll to mayor -> you're going to need to find a scholar. I thought one came to town recently.
-// TODO: Need to get into the inn. You bribe the guard with a coin.
+// TODO: add scene with mayor, trigger only if player has the pamphlet from the noticeboard from the mayor. Explain about some dark cultists that need to be stopped. They are performing rituals, people go missing
+// here keep the story, going to the mill, clues to the chapel, & entering the chapel cellar. BUT lets make the hints not be that cultists are in the cellar, but some thieves/bandits/ruffians.
+// The note in the mill should probably be a letter from one bandit, that they found a scroll, meet in the usual place <insert some obvious reference to the chapel cellar as hint>
+// TODO: After getting past "bandits" (or whatever they are) in chapel cellar, find a scroll. But you can't understand it.
+// TODO: Bring scroll to mayor -> you're going to need to find a scholar. "I thought one came to town recently". (better dialogue)
+// TODO: Need to get into the inn. You bribe the guard/bouncer with a coin.
 // TODO: Scholar is in the inn. He can translate the scroll.
-// TODO: The scroll is "Shadowcult For Dummies".
-//    1. Don't share the location of our hideout: a hidden cave off the forest path.
-//          You think that's near where you woke up!
+// TODO: The scroll is "Shadowcult For Dummies". (intentionally a joke, the rules in the scroll are below:)
+//    1. Don't share the location of our hideout: a hidden underground chamber off the forest path.
+//          *You think that's near where you woke up!*
 //    2. About the ritual & how to stop it
-//    3. TODO: some more info
+//    3. TODO: some more fun info here as filler. This is lore about the shadowcult, the dark god, etc.
 // You can ask the scholar about the cultists, he'll tell you they seek to perform a ritual to summon a dark god.
-//    If you ask how to stop them, he'll tell you that ... TODO something here to include in the final scene as third option
-// TODO: Go to the forest path, find new area.
-// TODO: You enter the cave. It's a maze.
+//    If you ask how to stop them, he'll tell you that you could likely cause the ritual to fail by wearing a [shadowbane_charm_oakhaven] before the ritual.
+//    He says he could help you make one, but you'll need to bring him a [glowing_crystal_shard_cave]. You can find one in the cave upstream of the river.
+// TODO: will need to go to the cave to find a [glowing_crystal_shard_cave].
+// TODO: flesh out the cave area. Maybe it's a maze?
+// TODO: acquire a [glowing_crystal_shard_cave], and return to the scholar. He gives you a [shadowbane_charm_oakhaven].
+// TODO: Go to the forest path, find new area for secret chamber.
 // TODO: you find a door, it's locked.
 // TODO: you pick the lock, and walk in. These cultists have fine robes turn towards you, whispering... "Is that really him?"
-// TODO: one steps forwards, "Sir, you've finally returned. We've been waiting for you. The ritual is ready to perform". He leads you up to the altar.
-// TODO: You are standing at the altar. You have the choice: "Embrace the darkness" or "Destroy the altar" or ""
-// TODO: If you choose to destroy the altar, the cultists attack.
-
+// TODO: one steps forwards, "Sir, you've finally returned. We've been waiting for you. The ritual is ready to perform". He leads you up to the altar. (The twist is that you are secretly the dark leader, but have forgotten)
+// TODO: You are standing at the altar. You have the choice: "Embrace the darkness" or "Destroy the altar" or if you have the [shadowbane_charm_oakhaven], "Ruin the ritual"
+// TODO: If you choose to destroy the altar, the cultists attack, bad ending.
 // TODO: If you choose to embrace the darkness, ENDING: the cultists bow down to you, "Welcome back, our lord. We will serve you faithfully."
+// TODO: if you choose to ruin the ritual, the ritual backfires, and destroys the cultists. You wake up in oakhaven, big celebration, good ending.
 
 const storedState = useStorage('cyoa-app', {
   /** @type {string[]} */
