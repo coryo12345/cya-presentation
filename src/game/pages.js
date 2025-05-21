@@ -585,7 +585,7 @@ Currently, there are 6 possible endings. Whether an ending is good or bad is sub
           state.openDialog(
             "Bandit's Journal",
             interpolateItemNames(
-              "The journal entry reads: 'Found some weird scroll in the old chapel. Boss is excited about it, says it's worth a fortune. Meeting at the usual place tonight with an unknown buyer. The buyer should have a [strange_symbol_medallion] with them. Not sure why the boss thinks the chapel cellar is such a nice hideout, but at least it's dry.'",
+              "The journal entry reads: 'Found some weird scroll on a job. Boss is excited about it, says it's worth a fortune. Meeting at the usual place tonight with an unknown buyer. The buyer should have a [strange_symbol_medallion] with them. Not sure why the boss thinks the chapel cellar is such a nice hideout, but at least it's dry.'",
               true,
             ).text,
           );
