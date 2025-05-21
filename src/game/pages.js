@@ -21,7 +21,7 @@ import { interpolateItemNames, state } from './state';
  * @property {string} [opacity]
  * @property {string} [backgroundColor]
  * @property {() => boolean} [action] returns false if the action should not be marked astaken
- * @property {string} [effect]
+ * @property {string} [effect] shorthand to open a dialog with the string content. Any reference items in [] will be given to the player.
  * @property {() => boolean} [condition]
  */
 
@@ -503,8 +503,13 @@ Currently, there are 6 possible endings. Whether an ending is good or bad is sub
         name: 'Ask about the lost locket',
         description: 'See if the shopkeeper has information about the lost locket.',
         condition: () => state.inventory.includes(ITEM_MAP['lost_locket_pamphlet']),
-        effect:
-          "The shopkeeper looks at you curiously. 'I don't know anything about that, but I have had this [strange_symbol_medallion] for a while. You can have it if you want.'",
+        action: () => {
+          state.removeItem(ITEM_MAP['lost_locket_pamphlet']);
+          state.openDialog(
+            '',
+            "The shopkeeper looks at you curiously. 'I don't know anything about that, but I have had this [strange_symbol_medallion] for a while. You can have it if you want.'",
+          );
+        },
       },
     ],
     links: [
@@ -524,8 +529,20 @@ Currently, there are 6 possible endings. Whether an ending is good or bad is sub
         name: 'Show the Mayoral Request',
         description: 'Show the mayor the request you found.',
         condition: () => state.inventory.includes(ITEM_MAP['mayor_request_pamphlet']),
+        action: () => {
+          state.removeItem(ITEM_MAP['mayor_request_pamphlet']);
+          state.openDialog(
+            '',
+            "The mayor's eyes light up. 'Ah, you've come to help! Dark forces have taken hold of our town. People have been disappearing, and there is talk of a cult. I fear the rumors are true. We need someone brave enough to investigate and stop them before more lives are lost.'\n\n'Will you help us?'",
+          );
+        },
+      },
+      {
+        name: 'Ask about the [shadowcult_scroll]',
+        description: 'Ask the mayor if he knows anything about the [shadowcult_scroll].',
+        condition: () => state.inventory.includes(ITEM_MAP['shadowcult_scroll']),
         effect:
-          "The mayor's eyes light up. 'Ah, you've come to help! Dark forces have taken hold of our town. People have been disappearing, and there is talk of a cult. I fear the rumors are true. We need someone brave enough to investigate and stop them before more lives are lost.'\n\n'Will you help us?'",
+          "I've never seen anything like that before. I certainly can't read it. But I believe a scholar came to town recently. Maybe you can try to find him?",
       },
     ],
     links: [

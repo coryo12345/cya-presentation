@@ -3,8 +3,9 @@ import { useStorage } from '@vueuse/core';
 import { reactive } from 'vue';
 import { ITEM_MAP } from './items';
 
-// TODO build debug menu
-// TODO fix deleting items from inventory
+// TODO make autocomplete a separate component
+// TODO "are you sure" dialogs on debug checkpoint settings
+// TODO have someone playtest then get images.
 
 const storedState = useStorage('cyoa-app', {
   /** @type {string[]} */
@@ -77,7 +78,7 @@ export const state = reactive({
   removeItem(item, count = 1) {
     const id = typeof item === 'object' ? item.id : item;
     while (count > 0 && storedState.value.inventory.includes(id)) {
-      let idx = storedState.value.inventory.findIndex((id) => id === id);
+      let idx = storedState.value.inventory.findIndex((itemId) => itemId === id);
       storedState.value.inventory.splice(idx, 1);
       count--;
     }
@@ -149,6 +150,36 @@ export const state = reactive({
       return true;
     }
     return false;
+  },
+  getCheckpointInfo() {
+    try {
+      return JSON.parse(checkpoint.value);
+    } catch (e) {
+      return null;
+    }
+  },
+  /**
+   * Debug methods for the debug app. NOT to be used for the actual game.
+   * These methods DO NOT handle edge cases, or trigger the appropriate events.
+   */
+  debug: {
+    /**
+     * @returns a copy of the current state for debug purposes
+     */
+    getFullState() {
+      return JSON.parse(JSON.stringify(storedState.value));
+    },
+    /**
+     *
+     * @param {string} pageId
+     * @param {string} actionName
+     */
+    removeAction(pageId, actionName) {
+      if (!storedState.value.actionsTaken[pageId]) {
+        storedState.value.actionsTaken[pageId] = [];
+      }
+      storedState.value.actionsTaken[pageId] = storedState.value.actionsTaken[pageId].filter((a) => a !== actionName);
+    },
   },
 });
 
