@@ -3,33 +3,9 @@ import { useStorage } from '@vueuse/core';
 import { reactive } from 'vue';
 import { ITEM_MAP } from './items';
 
-// TODO: add note to noticeboard to go see mayor, help freeing town from curse
-// TODO: add scene with mayor, trigger only if player has the pamphlet from the noticeboard from the mayor. Explain about some dark cultists that need to be stopped. They are performing rituals, people go missing
-// here keep the story, going to the mill, clues to the chapel, & entering the chapel cellar. BUT lets make the hints not be that cultists are in the cellar, but some thieves/bandits/ruffians.
-// The note in the mill should probably be a letter from one bandit, that they found a scroll, meet in the usual place <insert some obvious reference to the chapel cellar as hint>
-// TODO: After getting past "bandits" (or whatever they are) in chapel cellar, find a scroll. But you can't understand it.
-// TODO: Bring scroll to mayor -> you're going to need to find a scholar. "I thought one came to town recently". (better dialogue)
-// TODO: Need to get into the inn. You bribe the guard/bouncer with a coin.
-// TODO: Scholar is in the inn. He can translate the scroll.
-// TODO: The scroll is "Shadowcult For Dummies". (intentionally a joke, the rules in the scroll are below:)
-//    1. Don't share the location of our hideout: a hidden underground chamber off the forest path.
-//          *You think that's near where you woke up!*
-//    2. About the ritual & how to stop it
-//    3. TODO: some more fun info here as filler. This is lore about the shadowcult, the dark god, etc.
-// You can ask the scholar about the cultists, he'll tell you they seek to perform a ritual to summon a dark god.
-//    If you ask how to stop them, he'll tell you that you could likely cause the ritual to fail by wearing a [shadowbane_charm_oakhaven] before the ritual.
-//    He says he could help you make one, but you'll need to bring him a [glowing_crystal_shard_cave]. You can find one in the cave upstream of the river.
-// TODO: will need to go to the cave to find a [glowing_crystal_shard_cave].
-// TODO: flesh out the cave area. Maybe it's a maze?
-// TODO: acquire a [glowing_crystal_shard_cave], and return to the scholar. He gives you a [shadowbane_charm_oakhaven].
-// TODO: Go to the forest path, find new area for secret chamber.
-// TODO: you find a door, it's locked.
-// TODO: you pick the lock, and walk in. These cultists have fine robes turn towards you, whispering... "Is that really him?"
-// TODO: one steps forwards, "Sir, you've finally returned. We've been waiting for you. The ritual is ready to perform". He leads you up to the altar. (The twist is that you are secretly the dark leader, but have forgotten)
-// TODO: You are standing at the altar. You have the choice: "Embrace the darkness" or "Destroy the altar" or if you have the [shadowbane_charm_oakhaven], "Ruin the ritual"
-// TODO: If you choose to destroy the altar, the cultists attack, bad ending.
-// TODO: If you choose to embrace the darkness, ENDING: the cultists bow down to you, "Welcome back, our lord. We will serve you faithfully."
-// TODO: if you choose to ruin the ritual, the ritual backfires, and destroys the cultists. You wake up in oakhaven, big celebration, good ending.
+// TODO put checkpoints on all endings
+// TODO build debug menu
+// TODO fix deleting items from inventory
 
 const storedState = useStorage('cyoa-app', {
   /** @type {string[]} */
@@ -83,7 +59,7 @@ export const state = reactive({
     return storedState.value.inventory.map((id) => ITEM_MAP[id]);
   },
   /**
-   * @param {string | object} item
+   * @param {import('@/game/items').Item | string} item
    * @param {number} count
    */
   addItem(item, count = 1) {
@@ -96,12 +72,13 @@ export const state = reactive({
     }
   },
   /**
-   * @param {string} itemId
+   * @param {import('@/game/items').Item | string} item
    * @param {number} count
    */
-  removeItem(itemId, count = 1) {
-    while (count > 0 && storedState.value.inventory.includes(itemId)) {
-      let idx = storedState.value.inventory.findIndex((id) => id === itemId);
+  removeItem(item, count = 1) {
+    const id = typeof item === 'object' ? item.id : item;
+    while (count > 0 && storedState.value.inventory.includes(id)) {
+      let idx = storedState.value.inventory.findIndex((id) => id === id);
       storedState.value.inventory.splice(idx, 1);
       count--;
     }
@@ -160,19 +137,19 @@ export const state = reactive({
     checkpoint.value = JSON.stringify(storedState.value);
   },
   /**
-   * @returns {boolean}
+   * @returns {boolean} true if we need to navigate to the next link because something went wrong. false if checkpoint was loaded successfully.
    */
   loadCheckpoint() {
     if (!checkpoint.value || !checkpoint.value.length) {
-      return false;
+      return true;
     }
     try {
       storedState.value = JSON.parse(checkpoint.value);
     } catch (e) {
       console.error('Error loading checkpoint', e);
-      return false;
+      return true;
     }
-    return true;
+    return false;
   },
 });
 

@@ -26,16 +26,21 @@
       </div>
       <div class="flex flex-col justify-start items-start gap-4">
         <div
-          v-for="item in state.inventory"
+          v-for="item in visibleItems"
           :key="item.id"
           class="flex justify-start items-start gap-4 hover:bg-gray-600 transition-colors cursor-pointer rounded-lg p-2 w-full"
+          :role="item.onClick ? 'button' : undefined"
+          @click="handleItemClick(item)"
         >
           <div class="aspect-square w-28 h-28 bg-gray-700 rounded-lg p-2">
             <img :src="item.image" :alt="item.name" class="w-full h-full object-contain" />
           </div>
           <div class="text-white">
-            <h6 class="text-lg font-bold text-wrap">{{ item.name }}</h6>
-            <p class="text-sm text-wrap">{{ item.description }}</p>
+            <h6 class="text-lg font-bold text-wrap">
+              {{ item.name }}
+              <span v-if="item.count > 1">(x{{ item.count }})</span>
+            </h6>
+            <p class="text-sm text-wrap">{{ interpolateItemNames(item.description).text }}</p>
           </div>
         </div>
       </div>
@@ -45,9 +50,29 @@
 
 <script setup>
 import BackpackIcon from '@/components/icons/BackpackIcon.vue';
-import { ITEMS } from '@/game/items';
-import { state } from '@/game/state';
+import { interpolateItemNames, state } from '@/game/state';
+import { computed } from 'vue';
 const show = defineModel({ type: Boolean, default: false });
+
+const visibleItems = computed(() => {
+  return state.inventory
+    .filter((item) => !item.hidden)
+    .reduce((prev, curr) => {
+      if (prev[curr.id]) {
+        prev[curr.id].count += 1;
+      } else {
+        prev[curr.id] = { ...curr, count: 1 };
+      }
+      return prev;
+    }, {});
+});
+
+const handleItemClick = (item) => {
+  if (item.onClick) {
+    item.onClick();
+    show.value = false;
+  }
+};
 </script>
 
 <style scoped>

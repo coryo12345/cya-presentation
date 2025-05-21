@@ -96,6 +96,18 @@ export const PAGES = [
         effect:
           "The forest is quiet, save for the rustling of leaves and distant birdsong. The air is cool and smells of pine and damp soil. There's nothing immediately threatening, nor anything of obvious value right here.",
       },
+      {
+        name: 'Search for the Hidden Cultist Chamber',
+        description: 'Search off the path',
+        condition: () => state.inventory.includes(ITEM_MAP['shadowcult_scroll_translated']),
+        action: () => {
+          state.addItem(ITEM_MAP['hidden_cultist_chamber_discovered']);
+          state.openDialog(
+            'Hidden Cultist Chamber Discovered',
+            'You have discovered a trapdoor in the ground. It looks like it leads to a hidden chamber.',
+          );
+        },
+      },
     ],
     links: [
       // {
@@ -103,6 +115,13 @@ export const PAGES = [
       //   description: 'The path to the left seems to wind deeper into the shadowy woods.',
       //   link_to: 'forest_path_deeper',
       // },
+      {
+        name: 'Enter the Hidden Chamber',
+        description: "Descend the trapdoor into the cult's hidden chamber",
+        condition: () => state.inventory.includes(ITEM_MAP['hidden_cultist_chamber_discovered']),
+        onLink: () => state.saveCheckpoint(),
+        link_to: 'forest_path_secret_chamber_Q2',
+      },
       {
         name: 'Go Right (Towards Sounds of Water)',
         description:
@@ -161,11 +180,11 @@ export const PAGES = [
       },
     ],
     links: [
-      {
-        name: 'Search for Cave Entrance',
-        description: 'The glowing shard makes you wonder if its source is nearby.',
-        link_to: 'cave_hidden_entrance_exterior',
-      },
+      // {
+      //   name: 'Search for Cave Entrance',
+      //   description: 'The glowing shard makes you wonder if its source is nearby.',
+      //   link_to: 'cave_hidden_entrance_exterior',
+      // },
       {
         name: 'Go Back Downstream',
         description: 'Return to the calmer part of the river.',
@@ -328,10 +347,13 @@ export const PAGES = [
       {
         name: 'Mayoral Request',
         description: 'An urgent request from the Mayor.',
-        effect: 'TODO', // TODO
-      },
-      {
-        // TODO another filler note to build out the world
+        action: () => {
+          state.addItem(ITEM_MAP['mayor_request_pamphlet'].id);
+          state.openDialog(
+            'Mayoral Request',
+            'The mayor seeks help in freeing the town from a mysterious curse. He promises a handsome reward for anyone who can help.',
+          );
+        },
       },
     ],
     links: [
@@ -349,14 +371,6 @@ export const PAGES = [
     image: 'medieval-village.jpg',
     blur: 10,
     textBackground: true,
-    actions: [
-      {
-        name: 'Try the Inn Door',
-        description: "See if the 'Sleeping Dragon' Inn is open.",
-        effect:
-          "The door is barred from the inside. A gruff voice tells you to go away, they're not serving strangers.",
-      },
-    ],
     links: [
       {
         name: 'Examine the Notice Board',
@@ -367,6 +381,23 @@ export const PAGES = [
         name: 'Visit the General Store',
         description: 'Maybe the shopkeeper has something useful.',
         link_to: 'oakhaven_general_store_Q2',
+      },
+      {
+        name: 'Visit the Mayor',
+        description: "The mayor's house is the largest building in the square.",
+        link_to: 'oakhaven_mayor_house_Q2',
+      },
+      {
+        name: "Approach the 'Sleeping Dragon' Inn",
+        description: 'The inn is closed, but you can see a few people inside.',
+        link_to: 'oakhaven_inn_exterior_Q2',
+        condition: () => !state.inventory.includes(ITEM_MAP['hidden_oakhaven_inn_bribed']),
+      },
+      {
+        name: "Approach the 'Sleeping Dragon' Inn",
+        description: 'The inn is closed, but you can see a few people inside.',
+        link_to: 'oakhaven_inn_interior_Q2',
+        condition: () => state.inventory.includes(ITEM_MAP['hidden_oakhaven_inn_bribed']),
       },
       {
         name: 'Investigate a Suspicious Alleyway',
@@ -469,6 +500,27 @@ export const PAGES = [
     ],
   },
   {
+    id: 'oakhaven_mayor_house_Q2',
+    title: "Mayor's House",
+    description: 'A well-maintained house in the center of town. The mayor sits behind a large desk, looking troubled.',
+    backgroundColor: '#A0522D',
+    actions: [
+      {
+        name: 'Show the Mayoral Request',
+        description: 'Show the mayor the request you found.',
+        condition: () => state.inventory.includes(ITEM_MAP['mayor_request_pamphlet']),
+        effect:
+          "The mayor's eyes light up. 'Ah, you've come to help! Dark forces have taken hold of our town. People have been disappearing, and there is talk of a cult. I fear the rumors are true. We need someone brave enough to investigate and stop them before more lives are lost.'\n\n'Will you help us?'",
+      },
+    ],
+    links: [
+      {
+        name: 'Return to Village Square',
+        link_to: 'oakhaven_square_Q2',
+      },
+    ],
+  },
+  {
     id: 'oakhaven_mill_exterior_Q2',
     title: 'Old Mill Exterior',
     description:
@@ -490,18 +542,18 @@ export const PAGES = [
     id: 'oakhaven_mill_interior_Q2',
     title: 'Old Mill Interior',
     description:
-      "Inside, the mill is choked with dust and cobwebs. The air is heavy and smells of decay. You find a discarded [villagers_diary_oakhaven] half-hidden under a pile of sacks. It details strange meetings and growing fear of a 'Shadow Master.'",
+      'Inside, the mill is choked with dust and cobwebs. The air is heavy and smells of decay. You find a discarded [bandit_journal_oakhaven] half-hidden under a pile of sacks.',
     backgroundColor: '#5A3A1A',
     actions: [
       {
-        name: "Read the Villager's Diary",
-        description: 'Peruse the contents of the diary.',
+        name: "Read the Bandit's Journal",
+        description: 'Peruse the contents of the journal.',
         action: () => {
-          state.addItem(ITEM_MAP['villagers_diary_oakhaven'].id);
+          state.addItem(ITEM_MAP['bandit_journal_oakhaven'].id);
           state.openDialog(
-            "A Villager's Diary",
+            "Bandit's Journal",
             interpolateItemNames(
-              "The diary speaks of secret gatherings at the 'Forbidden Cellar' beneath the old chapel and mentions a [strange_symbol_medallion] worn by cultists.",
+              "The journal entry reads: 'Found some weird scroll in the old chapel. Boss is excited about it, says it's worth a fortune. Meeting at the usual place tonight with an unknown buyer. The buyer should have a [strange_symbol_medallion] with them. Not sure why the boss thinks the chapel cellar is such a nice hideout, but at least it's dry.'",
               true,
             ).text,
           );
@@ -530,7 +582,7 @@ export const PAGES = [
       },
       {
         name: 'Enter the Front Door',
-        description: 'An old wooden door',
+        description: 'Pick the lock to the old wooden door',
         condition: () => state.inventory.includes(ITEM_MAP['lockpick']),
         onLink: () => state.removeItem(ITEM_MAP['lockpick']),
         link_to: 'oakhaven_chapel_interior_Q2',
@@ -538,7 +590,7 @@ export const PAGES = [
       {
         name: 'Look for the Cellar Entrance around the Back',
         description: 'The diary mentioned a cellar.',
-        condition: () => state.inventory.includes(ITEM_MAP['villagers_diary_oakhaven']),
+        condition: () => state.inventory.includes(ITEM_MAP['bandit_journal_oakhaven']),
         link_to: 'oakhaven_cellar_entrance_Q2',
       },
       {
@@ -616,46 +668,57 @@ export const PAGES = [
     id: 'oakhaven_forbidden_cellar_Q2',
     title: 'The Forbidden Cellar',
     description:
-      "You enter the cellar, and the door slams shut behind you. You are locked in. \n\nThe air in the cellar is frigid and rank with the smell of decay and something else... something cloyingly sweet. Flickering torchlight from deeper within reveals a ritual chamber. Hooded figures chant around a dark altar. You've stumbled upon the heart of Oakhaven's shadow.",
+      "You enter the cellar, and the door slams shut behind you. You are locked in. \n\nThe air in the cellar is musty and smells of damp earth. Flickering torchlight from deeper within reveals a group of rough-looking men gathered around a table. You've stumbled upon the bandits' hideout.",
     backgroundColor: '#2C3E50',
     actions: [
-      // if you sneak, there is a 50/50 chance to succeed or fail
       {
         name: 'Try to Sneak Past (Risky)',
-        description: 'Attempt to find the source of the shadow without being seen.',
+        description: 'Attempt to get past the bandits without being seen.',
         action: () => {
           if (Math.random() < 0.5) {
-            state.goTo('oakhaven_cult_sneak_fail_Q2');
+            state.goTo('oakhaven_cellar_sneak_fail_Q2');
           } else {
-            state.goTo('oakhaven_cult_confrontation_Q2');
+            state.goTo('oakhaven_bandit_treasure_Q2');
           }
         },
       },
     ],
     links: [
       {
-        name: 'Confront the Cultists',
+        name: 'Confront the Bandits',
         description: 'Step forward and challenge them.',
-        link_to: 'oakhaven_cult_confrontation_fail_Q2',
+        link_to: 'oakhaven_bandit_confrontation_fail_Q2',
       },
       {
-        name: 'Brandish the [strange_symbol_medallion] and attempt to blend in',
+        name: 'Brandish the [strange_symbol_medallion] and pretend be the buyer.',
         description:
           'Hold the [strange_symbol_medallion] in front of you and step forward, as if you were one of them.',
-        condition: () => state.inventory.includes(ITEM_MAP['strange_symbol_medallion']),
-        link_to: 'oakhaven_cult_confrontation_Q2',
+        condition: () =>
+          state.inventory.includes(ITEM_MAP['strange_symbol_medallion']) &&
+          state.inventory.includes(ITEM_MAP['bandit_journal_oakhaven']) &&
+          !state.inventory.includes(ITEM_MAP['shadowcult_scroll']) &&
+          !state.inventory.includes(ITEM_MAP['shadowcult_scroll_translated']),
+        link_to: 'oakhaven_bandit_confrontation_Q2',
+      },
+      {
+        name: 'Leave the Cellar',
+        description: "You already have the scroll, so you don't need to be here.",
+        condition: () =>
+          state.inventory.includes(ITEM_MAP['shadowcult_scroll']) ||
+          state.inventory.includes(ITEM_MAP['shadowcult_scroll_translated']),
+        link_to: 'oakhaven_chapel_exterior_Q2',
       },
     ],
   },
   {
-    id: 'oakhaven_cult_confrontation_fail_Q2',
-    title: 'Confrontation with the Shadow Cult',
+    id: 'oakhaven_bandit_confrontation_fail_Q2',
+    title: 'Ending: Confrontation with the Bandits',
     description:
-      "The cultists turn, their faces hidden in shadow. One of the figures holds a staff topped with a [strange_symbol_medallion], and steps forward. 'Another fool stumbles into the Master's embrace!' \n\nHe raises his staff and a beam of shadow energy strikes you. You are slain.",
+      "The bandits turn, their faces flickering in the light of their torches. One of the figures steps forward. 'You shouldn't have come here!' \n\nHe raises his axe and strikes you down. You are slain.",
     backgroundColor: '#1A2430',
     links: [
       {
-        name: 'Game Over - Slain by the Shadow Cultists',
+        name: 'Game Over - Slain by the Bandits',
         description: 'Try again?',
         onLink: () => state.restart(),
         link_to: 'tutorial',
@@ -663,14 +726,14 @@ export const PAGES = [
     ],
   },
   {
-    id: 'oakhaven_cult_sneak_fail_Q2',
-    title: 'Sneak Past the Shadow Cult',
+    id: 'oakhaven_cellar_sneak_fail_Q2',
+    title: 'Ending: Caught by the Bandits',
     description:
-      "You attempt to sneak past the cultists, but they are too alert. 'Another fool stumbles into the Master's embrace!' \n\nThey turn and attack you. You are slain.",
+      "You attempt to sneak past the bandits, but they are too alert. 'You're not getting away with that!' \n\nThey turn and attack you. You are slain.",
     backgroundColor: '#1A2430',
     links: [
       {
-        name: 'Game Over - Slain by the Shadow Master',
+        name: 'Game Over - Slain by the Bandits',
         description: 'Try again?',
         onLink: () => state.restart(),
         link_to: 'tutorial',
@@ -678,82 +741,271 @@ export const PAGES = [
     ],
   },
   {
-    id: 'oakhaven_cult_confrontation_Q2',
-    title: 'Confrontation with the Shadow Cult',
-    description:
-      "The cultists turn, their faces hidden in shadow. Their leader, a tall figure holding a staff topped with a [strange_symbol_medallion], steps forward. 'Another fool stumbles into the Master's embrace!'",
+    id: 'oakhaven_bandit_treasure_Q2',
+    title: 'Bandit Treasure Room',
+    description: 'You have made your way past the bandits and found the treasure room.',
     backgroundColor: '#1A2430',
     actions: [
       {
-        name: 'Toss the [strange_symbol_medallion]',
-        description: 'Throw the [strange_symbol_medallion] at the leader, hoping it will distract them.',
-        condition: () => state.inventory.includes(ITEM_MAP['strange_symbol_medallion']),
+        name: 'Search the room',
+        description: 'Look for anything useful.',
+        effect:
+          "You find a [shadowcult_scroll] in one of the chests.\n\nYou can't make out the writing, but it looks important. Perhaps you should find someone who can translate it.",
+      },
+    ],
+    links: [
+      {
+        name: 'Leave the Cellar',
+        link_to: 'oakhaven_chapel_exterior_Q2',
+      },
+    ],
+  },
+  {
+    id: 'oakhaven_bandit_confrontation_Q2',
+    title: 'Confrontation with the Bandits',
+    description:
+      "The bandits turn to face you. Seeing the [strange_symbol_medallion] in your possession, their leader steps forward. 'Ah, you're the buyer! I'm glad you're here. We've got the scroll ready for you.'",
+    backgroundColor: '#1A2430',
+    actions: [
+      {
+        name: 'Buy the Scroll',
+        description: 'Trade a [copper_coin] for the scroll.',
+        condition: () => state.inventory.includes(ITEM_MAP['copper_coin']),
         action: () => {
-          state.addItem(ITEM_MAP['hidden_oakhaven_cult_distract']);
-          state.removeItem(ITEM_MAP['strange_symbol_medallion']);
-          state.openDialog('The Cultists are distracted by the medallion', 'You can now rush to the altar.');
+          state.removeItem(ITEM_MAP['copper_coin']);
+          state.addItem(ITEM_MAP['shadowcult_scroll']);
+          state.openDialog(
+            'You buy the [shadowcult_scroll].',
+            "You can't make out the writing, but it looks important. Perhaps you should find someone who can translate it.",
+          );
         },
       },
     ],
     links: [
+      {
+        name: 'Leave the Cellar',
+        link_to: 'oakhaven_chapel_exterior_Q2',
+      },
+    ],
+  },
+  {
+    id: 'oakhaven_inn_exterior_Q2',
+    title: 'Sleeping Dragon Inn',
+    description:
+      'The inn looks closed, with a burly guard standing at the door. He eyes you suspiciously, while barring your way. Perhaps you could bribe him with a coin.',
+    backgroundColor: '#8B4513',
+    actions: [
+      {
+        name: 'Bribe the Guard',
+        description: 'Offer a coin to the guard to let you in.',
+        condition: () => state.inventory.includes(ITEM_MAP['copper_coin']),
+        action: () => {
+          state.removeItem(ITEM_MAP['copper_coin']);
+          state.addItem(ITEM_MAP['hidden_oakhaven_inn_bribed']);
+          state.goTo('oakhaven_inn_interior_Q2');
+        },
+      },
+    ],
+    links: [
+      {
+        name: 'Return to Village Square',
+        link_to: 'oakhaven_square_Q2',
+      },
+    ],
+  },
+  {
+    id: 'oakhaven_inn_interior_Q2',
+    title: 'Sleeping Dragon Inn Interior',
+    description:
+      'The inn is dimly lit and mostly empty. A scholarly-looking man sits in the corner, surrounded by books and scrolls.',
+    backgroundColor: '#5A3A1A',
+    actions: [
+      {
+        name: 'Greet the Scholar',
+        description: 'Introduce yourself.',
+        condition: () => !state.inventory.includes(ITEM_MAP['shadowcult_scroll_translated']),
+        effect: "The scholar looks up at you. 'I'm sorry, I'm quite busy right now.'",
+      },
+      {
+        name: 'Show the Scroll to the Scholar',
+        description: 'Ask the scholar to translate the scroll.',
+        condition: () => state.inventory.includes(ITEM_MAP['shadowcult_scroll']),
+        action: () => {
+          state.removeItem(ITEM_MAP['shadowcult_scroll']);
+          state.addItem(ITEM_MAP['shadowcult_scroll_translated']);
+          state.openDialog(
+            "Scholar's Translation",
+            "The scholar's eyes widen as he reads. 'This must be a scroll from the Shadow Cult!'\n\nLet me translate it for you.\n\nHe gives you a [shadowcult_scroll_translated].",
+          );
+        },
+      },
+      {
+        name: 'Ask the Scholar about the Shadow Cult',
+        description: 'Ask for more information about the Shadow Cult.',
+        condition: () => state.inventory.includes(ITEM_MAP['shadowcult_scroll_translated']),
+        action: () => {
+          if (!state.inventory.includes(ITEM_MAP['shadowbane_charm_oakhaven_recipe'])) {
+            state.addItem(ITEM_MAP['shadowbane_charm_oakhaven_recipe']);
+          }
+          state.openDialog(
+            '',
+            `Hmm... yes I do know a bit about them. They're a strange bunch, to say the least.
+
+They worship a god called A'kul. He's some sort of dark entity that they claim will grant them great power.
+
+I have read about their ritual before, but I don't remember where. If they complete their ritual of darkness, they will be able to summon the dark god A'kul.
+
+The ritual can't be stopped once it has started, but I believe a [shadowbane_charm_oakhaven] could be used to reverse the effects, and destroy all the worshippers of the darkness.
+
+I don't have one, but I believe I could help make you one if you could bring me a [glowing_crystal_shard_cave]. I should have the rest of the ingredients on me.
+
+You could probably find a [glowing_crystal_shard_cave] near the cave upstream of Oakhaven.`,
+          );
+        },
+      },
+      {
+        name: 'Hand the [glowing_crystal_shard_cave] to the Scholar',
+        description: 'Have the scholar make you a [shadowbane_charm_oakhaven].',
+        condition: () =>
+          state.inventory.includes(ITEM_MAP['glowing_crystal_shard_cave']) &&
+          state.inventory.includes(ITEM_MAP['shadowbane_charm_oakhaven_recipe']),
+        action: () => {
+          state.removeItem(ITEM_MAP['glowing_crystal_shard_cave']);
+          state.removeItem(ITEM_MAP['shadowbane_charm_oakhaven_recipe']);
+          state.addItem(ITEM_MAP['shadowbane_charm_oakhaven']);
+          state.openDialog(
+            '',
+            'You hand the [glowing_crystal_shard_cave] to the scholar. He looks at it and nods.\n\nHe performs a few incantations and a [shadowbane_charm_oakhaven] is created. He hands it to you.',
+          );
+        },
+      },
+      {
+        name: 'Ask for Work',
+        description: 'Ask the owner of the inn if he needs help with anything.',
+        effect:
+          'The owner of the inn is a bit busy, but he could use some help cleaning a few rooms.\n\nYou spend some time cleaning the rooms, and in return, he gives you a [copper_coin].',
+      },
+    ],
+    links: [
+      {
+        name: 'Leave the Inn',
+        link_to: 'oakhaven_square_Q2',
+      },
+    ],
+  },
+  {
+    id: 'forest_path_secret_chamber_Q2',
+    title: 'Secret Chamber',
+    description:
+      "You find a hidden trapdoor in the ground in the forest. Inside, you discover a chamber filled with robed figures. They turn towards you, whispering... 'Is that really him?'",
+    backgroundColor: '#2C3E50',
+    actions: [
+      {
+        name: 'Step Forward',
+        description: 'Move closer to the altar.',
+        action: () => {
+          state.addItem(ITEM_MAP['hidden_cultist_chamber_stepped_forward']);
+          state.openDialog(
+            '',
+            "One of the cultists steps forward. 'Sir, you've finally returned. We've been waiting for you. The ritual is ready to perform.'\n\n\nIt seems they think you are their leader. You did wake up just outside here after all.\n\nCould this be your destiny?",
+          );
+        },
+      },
+    ],
+    links: [
+      {
+        name: 'Embrace the Darkness',
+        description: 'Accept your role as their leader.',
+        condition: () => state.inventory.includes(ITEM_MAP['hidden_cultist_chamber_stepped_forward']),
+        link_to: 'game_over_dark_embrace_Q2',
+      },
       {
         name: 'Destroy the Altar',
-        description: 'Ignore the cultists & rush focus your efforts on the dark altar, rushing over to it.',
-        condition: () => state.inventory.includes(ITEM_MAP['silver_dagger_inscribed']),
-        link_to: 'oakhaven_shadow_banished_Q2',
-        onLink: () => {
-          if (!state.inventory.includes(ITEM_MAP['hidden_oakhaven_cult_distract'])) {
-            state.goTo('game_over_cult_sacrifice_Q2');
-            return false;
-          }
-        },
-      },
-      {
-        name: 'Attempt to Fight the Leader',
-        description: 'Without enough protection, this is unwise.',
+        description: 'Try to smash the dark altar.',
+        condition: () => state.inventory.includes(ITEM_MAP['hidden_cultist_chamber_stepped_forward']),
         link_to: 'game_over_cult_sacrifice_Q2',
       },
-    ],
-  },
-  {
-    id: 'oakhaven_shadow_banished_Q2',
-    title: 'The Shadow Banished',
-    description:
-      'Using the blessed items, you manage to disrupt the ritual and shatter the dark altar. A piercing shriek echoes as the shadowy presence dissipates. The cultists collapse or flee in terror. Oakhaven is saved, thanks to you. The villagers, though shaken, hail you as their hero.',
-    backgroundColor: '#E6E6FA',
-    textBackground: true,
-    links: [
       {
-        name: 'Celebrate with Oakhaven',
-        description: 'You are hailed as a hero. The villagers thank you for your bravery.',
-        link_to: 'game_won_oakhaven_quest',
+        name: 'Ruin the Ritual',
+        description: 'Use the Shadowbane Charm to reverse the ritual effects, destroying the shadow cult.',
+        condition: () =>
+          state.inventory.includes(ITEM_MAP['hidden_cultist_chamber_stepped_forward']) &&
+          state.inventory.includes(ITEM_MAP['shadowbane_charm_oakhaven']),
+        link_to: 'game_over_ritual_reversed_Q2',
       },
     ],
   },
   {
-    id: 'game_won_oakhaven_quest',
-    title: 'VICTORY! - Savior of Oakhaven',
+    id: 'game_over_dark_embrace_Q2',
+    title: 'Ending: Dark Embrace',
     description:
-      'The shadow over Oakhaven has been lifted, thanks to your bravery and detective skills. The village rejoices, and your name will be sung in local tales for years to come. Your quest is complete!',
-    backgroundColor: '#90EE90',
-    textBackground: true,
+      "The cultists bow down to you. 'Welcome back, our lord. We will serve you faithfully.'\n\nYou perform the ritual, and the darkness claims you. A'kul is summoned, and the world is plunged into darkness.\n\nThe shadow cult has won, with you as their leader and their dark god A'kul at the helm.",
+    backgroundColor: '#000000',
     links: [
       {
-        name: 'Start a New Adventure?',
-        onLink: () => state.restart(),
+        name: 'Restart from checkpoint',
+        description: 'Go back',
+        onLink: () => state.loadCheckpoint(),
         link_to: 'forest_path_start',
+      },
+      {
+        name: 'Game Over - Dark Lord',
+        description: 'Try again?',
+        onLink: () => state.restart(),
+        link_to: 'tutorial',
       },
     ],
   },
   {
     id: 'game_over_cult_sacrifice_Q2',
-    title: 'Consumed by Shadow',
+    title: 'Ending: Cult Sacrifice',
     description:
-      "The cultists overwhelm you. The last thing you see is the leader's shadowy face as you are dragged towards the altar. Oakhaven falls completely into darkness, and you become another offering to the Shadow Master.",
+      "You try to destroy the altar, but the cultists stop you before you can make any progress. They overpower you and sacrifice you to A'kul. You are slain.",
     backgroundColor: '#000000',
     links: [
       {
-        name: 'Game Over - Slain by the Shadow Master',
+        name: 'Restart from checkpoint',
+        description: 'Go back',
+        onLink: () => state.loadCheckpoint(),
+        link_to: 'forest_path_start',
+      },
+      {
+        name: "Game Over - Sacrificed to A'kul",
+        description: 'Try again?',
+        onLink: () => state.restart(),
+        link_to: 'tutorial',
+      },
+    ],
+  },
+  {
+    id: 'game_over_ritual_reversed_Q2',
+    title: 'Reverse the Ritual',
+    description:
+      'You tell the cultists you are going to perform the ritual, but you use the [shadowbane_charm_oakhaven] to reverse the effects. What should have summoned darkness, summons a bright holy light. The light reaches out into the world and destroys the shadow cult. You pass out from casting the ritual.',
+    backgroundColor: '#000000',
+    links: [
+      {
+        name: 'Continue',
+        description: 'Continue the story',
+        link_to: 'game_over_ritual_reversed_celebration_Q2',
+      },
+    ],
+  },
+  {
+    id: 'game_over_ritual_reversed_celebration_Q2',
+    title: 'Ending: Ritual Reversed',
+    description:
+      "You wake up in Oakhaven. The mayor is there to greet you. 'Thank you for saving us!'\n\nYou are hailed as a hero, and the shadow cult is destroyed. The world is saved!",
+    backgroundColor: '#000000',
+    links: [
+      {
+        name: 'Restart from checkpoint',
+        description: 'Go back',
+        onLink: () => state.loadCheckpoint(),
+        link_to: 'forest_path_start',
+      },
+      {
+        name: 'Game Over - Ritual Reversed',
         description: 'Try again?',
         onLink: () => state.restart(),
         link_to: 'tutorial',
