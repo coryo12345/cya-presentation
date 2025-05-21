@@ -43,7 +43,13 @@ export const PAGES = [
   {
     id: 'tutorial',
     title: 'Tutorial',
-    description: 'This is the tutorial page. Here would be a description of where you are / what is happening',
+    description: `This is the tutorial page. Here would be a description of where you are / what is happening.
+
+You can restart the game at any time by clicking the restart button in the top left corner.
+
+You can also view your inventory by clicking the inventory button in the top right corner.
+
+Currently, there are 6 possible endings. Whether an ending is good or bad is subjective. Some endings are based on random chance.`,
     backgroundColor: 'slategray',
     image:
       'https://shopgreatpretenders.com/cdn/shop/files/Untitleddesign-2023-08-23T101829.266_ee7c6476-c595-492f-be70-3357b1a31e3e.png?v=1692800320&width=1600',
@@ -258,6 +264,7 @@ export const PAGES = [
   },
   {
     id: 'hunter_camp',
+    title: 'Hunter Camp',
     description: 'You find a large campground with some hunters and their tents.',
     actions: [
       {
@@ -271,6 +278,7 @@ export const PAGES = [
         description: 'Search the tents for anything useful.',
         action: () => {
           if (Math.random() < 0.5) {
+            state.saveCheckpoint();
             state.goTo('hunter_camp_sneak_fail');
           } else {
             state.addItem(ITEM_MAP['copper_coin']);
@@ -290,10 +298,17 @@ export const PAGES = [
   },
   {
     id: 'hunter_camp_sneak_fail',
+    title: 'Ending: Slain by the Hunters',
     description:
       "You attempt to steal from the hunters. You think they aren't looking but they are too alert. They draw their bows and attack you. You are slain.",
     backgroundColor: '#1A2430',
     links: [
+      {
+        name: 'Restart from checkpoint',
+        description: 'Go back',
+        onLink: () => state.loadCheckpoint(),
+        link_to: 'forest_path_start',
+      },
       {
         name: 'Game Over - Slain by the Hunters',
         description: 'Try again?',
@@ -656,6 +671,7 @@ export const PAGES = [
       {
         name: 'Enter the Forbidden Cellar',
         description: 'Descend into the darkness beneath the chapel.',
+        onLink: () => state.saveCheckpoint(),
         link_to: 'oakhaven_forbidden_cellar_Q2',
       },
       {
@@ -718,6 +734,12 @@ export const PAGES = [
     backgroundColor: '#1A2430',
     links: [
       {
+        name: 'Restart from checkpoint',
+        description: 'Go back',
+        onLink: () => state.loadCheckpoint(),
+        link_to: 'forest_path_start',
+      },
+      {
         name: 'Game Over - Slain by the Bandits',
         description: 'Try again?',
         onLink: () => state.restart(),
@@ -732,6 +754,12 @@ export const PAGES = [
       "You attempt to sneak past the bandits, but they are too alert. 'You're not getting away with that!' \n\nThey turn and attack you. You are slain.",
     backgroundColor: '#1A2430',
     links: [
+      {
+        name: 'Restart from checkpoint',
+        description: 'Go back',
+        onLink: () => state.loadCheckpoint(),
+        link_to: 'forest_path_start',
+      },
       {
         name: 'Game Over - Slain by the Bandits',
         description: 'Try again?',

@@ -3,7 +3,6 @@ import { useStorage } from '@vueuse/core';
 import { reactive } from 'vue';
 import { ITEM_MAP } from './items';
 
-// TODO put checkpoints on all endings
 // TODO build debug menu
 // TODO fix deleting items from inventory
 
@@ -159,7 +158,7 @@ export const state = reactive({
  */
 export function interpolateItemNames(str, useHtml = false) {
   const items = [];
-  const text = str.replaceAll(/\[(.*)\]/g, (match, name) => {
+  const text = str.replaceAll(/\[([^\[]*)\]/g, (match, name) => {
     if (!match) return '';
     const item = ITEM_MAP[name];
     if (!item) return match;
