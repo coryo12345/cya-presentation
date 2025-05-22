@@ -3,29 +3,17 @@
     <h2 class="text-2xl font-bold mb-4">Manage Inventory</h2>
     <div class="flex flex-col gap-2">
       <!-- Item Search -->
-      <div class="relative mt-2" ref="dropdownContainer">
-        <input
-          type="text"
-          v-model="searchQuery"
-          @focus="showDropdown = true"
-          placeholder="Search items to add..."
-          class="w-full px-3 py-2 bg-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-        />
-        <div
-          v-if="showDropdown"
-          class="absolute z-10 w-full mt-1 bg-gray-800 rounded-lg shadow-lg max-h-60 overflow-y-auto"
-        >
-          <div
-            v-for="item in filteredItems"
-            :key="item.id"
-            @click="addItem(item)"
-            class="px-3 py-2 hover:bg-gray-700 cursor-pointer"
-          >
-            <div class="font-medium">{{ item.name }}</div>
-            <div class="text-sm text-gray-400 font-mono">{{ item.id }}{{ item.hidden ? ' (hidden)' : '' }}</div>
-          </div>
-        </div>
-      </div>
+      <Autocomplete 
+        :items="ITEMS" 
+        placeholder="Search items to add..."
+        :filterFunction="filterItems"
+        @select="addItem"
+      >
+        <template #item="{ item }">
+          <div class="font-medium">{{ item.name }}</div>
+          <div class="text-sm text-gray-400 font-mono">{{ item.id }}{{ item.hidden ? ' (hidden)' : '' }}</div>
+        </template>
+      </Autocomplete>
 
       <!-- Current Inventory -->
       <div class="mt-4">
@@ -96,47 +84,28 @@
 <script setup>
 import { ITEMS } from '@/game/items';
 import { state } from '@/game/state';
-import { computed, onMounted, onUnmounted, ref } from 'vue';
-
-const searchQuery = ref('');
-const showDropdown = ref(false);
-const dropdownContainer = ref(null);
-
-const filteredItems = computed(() => {
-  const query = searchQuery.value.toLowerCase();
-  return ITEMS.filter(
-    (item) =>
-      item.name.toLowerCase().includes(query) ||
-      item.id.toLowerCase().includes(query) ||
-      (item.description && item.description.toLowerCase().includes(query)),
-  );
-});
+import { computed } from 'vue';
+import Autocomplete from '@/components/Autocomplete.vue';
 
 const playerInventory = computed(() => {
   return state.inventory;
 });
 
+const filterItems = (items, query) => {
+  const lowercaseQuery = query.toLowerCase();
+  return items.filter(
+    (item) =>
+      item.name.toLowerCase().includes(lowercaseQuery) ||
+      item.id.toLowerCase().includes(lowercaseQuery) ||
+      (item.description && item.description.toLowerCase().includes(lowercaseQuery)),
+  );
+};
+
 const addItem = (item) => {
   state.addItem(item.id);
-  showDropdown.value = false;
-  searchQuery.value = '';
 };
 
 const removeItem = (item) => {
   state.removeItem(item.id);
 };
-
-const handleClickOutside = (event) => {
-  if (dropdownContainer.value && !dropdownContainer.value.contains(event.target)) {
-    showDropdown.value = false;
-  }
-};
-
-onMounted(() => {
-  document.addEventListener('click', handleClickOutside);
-});
-
-onUnmounted(() => {
-  document.removeEventListener('click', handleClickOutside);
-});
 </script>

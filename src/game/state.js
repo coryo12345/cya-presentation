@@ -5,7 +5,6 @@ import { ITEM_MAP } from './items';
 
 // TODO make autocomplete a separate component
 // TODO "are you sure" dialogs on debug checkpoint settings
-// TODO have someone playtest then get images.
 
 const storedState = useStorage('cyoa-app', {
   /** @type {string[]} */
