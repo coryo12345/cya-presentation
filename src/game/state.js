@@ -3,9 +3,6 @@ import { useStorage } from '@vueuse/core';
 import { reactive } from 'vue';
 import { ITEM_MAP } from './items';
 
-// TODO make autocomplete a separate component
-// TODO "are you sure" dialogs on debug checkpoint settings
-
 const storedState = useStorage('cyoa-app', {
   /** @type {string[]} */
   history: ['tutorial'],
