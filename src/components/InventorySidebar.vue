@@ -33,7 +33,9 @@
           @click="handleItemClick(item)"
         >
           <div class="aspect-square w-28 h-28 bg-gray-700 rounded-lg p-2">
-            <img :src="item.image" :alt="item.name" class="w-full h-full object-contain" />
+            <div class="w-full h-full bg-white">
+              <img :src="item.image" :alt="item.name" class="w-full h-full object-contain" />
+            </div>
           </div>
           <div class="text-white">
             <h6 class="text-lg font-bold text-wrap">
