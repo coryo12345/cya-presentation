@@ -3,6 +3,10 @@ import { useStorage } from '@vueuse/core';
 import { reactive } from 'vue';
 import { ITEM_MAP } from './items';
 
+// TODO get images for current areas/items
+
+// TODO second quest!
+
 const storedState = useStorage('cyoa-app', {
   /** @type {string[]} */
   history: ['tutorial'],

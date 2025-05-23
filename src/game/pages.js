@@ -174,9 +174,10 @@ Currently, there are 6 possible endings. Whether an ending is good or bad is sub
     title: 'Upstream Rapids',
     description:
       'The river here is a torrent of white water crashing over jagged rocks. The air is filled with mist and the roar of the rapids. The path along the bank is treacherous.',
-    backgroundColor: '#4682B4',
+    // backgroundColor: '#4682B4',
     image: 'https://cdn.pixabay.com/photo/2020/04/02/12/06/water-4994814_1280.jpg',
-    blur: 10,
+    textBackground: true,
+    blur: 6,
     actions: [
       {
         name: 'Examine Glittering Rocks',
@@ -186,11 +187,6 @@ Currently, there are 6 possible endings. Whether an ending is good or bad is sub
       },
     ],
     links: [
-      // {
-      //   name: 'Search for Cave Entrance',
-      //   description: 'The glowing shard makes you wonder if its source is nearby.',
-      //   link_to: 'cave_hidden_entrance_exterior',
-      // },
       {
         name: 'Go Back Downstream',
         description: 'Return to the calmer part of the river.',
@@ -236,6 +232,9 @@ Currently, there are 6 possible endings. Whether an ending is good or bad is sub
     id: 'hunter_camp_approach',
     description:
       'You follow the footprints into the forest. You find a campsite with what looks like the ruins of a campfire',
+    image: 'https://cdn.pixabay.com/photo/2020/11/09/15/12/trail-5726987_1280.jpg',
+    blur: 6,
+    textBackground: true,
     actions: [
       {
         name: 'Search the campsite',
@@ -266,6 +265,9 @@ Currently, there are 6 possible endings. Whether an ending is good or bad is sub
     id: 'hunter_camp',
     title: 'Hunter Camp',
     description: 'You find a large campground with some hunters and their tents.',
+    image: '/img/hunter_camp.png',
+    textBackground: true,
+    blur: 6,
     actions: [
       {
         name: 'Inquire about the footprints',
@@ -323,7 +325,7 @@ Currently, there are 6 possible endings. Whether an ending is good or bad is sub
     description:
       "You approach the village of Oakhaven. Ramshackle fences line a muddy track leading towards simple wooden houses. A pall of unease hangs in the air; it's unnaturally quiet, and the few villagers you see hurry indoors, casting suspicious glances.",
     backgroundColor: '#A0522D',
-    image: '/medieval-village.jpg',
+    image: '/img/oakhaven/medieval-village.jpg',
     links: [
       {
         name: 'Enter the Village Square',
@@ -346,7 +348,9 @@ Currently, there are 6 possible endings. Whether an ending is good or bad is sub
     id: 'oakhaven_notice_board_Q2',
     title: 'Oakhaven Notice Board',
     description: 'The notice board has a few tattered posters.',
-    backgroundColor: 'SADDLEBROWN',
+    image: '/img/oakhaven/oakhaven_notice_board.png',
+    textBackground: true,
+    blur: 6,
     actions: [
       {
         name: 'Notice: Lost Locket',
@@ -383,7 +387,7 @@ Currently, there are 6 possible endings. Whether an ending is good or bad is sub
     title: 'Oakhaven Village Square',
     description:
       "The square is dusty and mostly empty. A few closed market stalls stand forlornly. The largest buildings are the Mayor's House and the 'Sleeping Dragon' Inn, though the inn looks closed. Fearful eyes watch you from darkened windows.",
-    image: 'medieval-village.jpg',
+    image: '/img/oakhaven/medieval-village.jpg',
     blur: 10,
     textBackground: true,
     links: [
@@ -435,7 +439,8 @@ Currently, there are 6 possible endings. Whether an ending is good or bad is sub
     title: 'Alleyway',
     description:
       'You find yourself in a narrow alleyway between two buildings. A foul odor seeps through the boards of the nearby building. You hear faint footsteps approaching.',
-    backgroundColor: '#8B4513',
+    backgroundColor: '#434343',
+    image: 'https://cdn.pixabay.com/photo/2020/06/15/11/59/el-born-5301517_1280.jpg',
     actions: [
       {
         name: 'Search Trash Pile',
@@ -481,6 +486,8 @@ Currently, there are 6 possible endings. Whether an ending is good or bad is sub
     title: 'General Store',
     description: 'An old weary shopkeeper is behind the counter. "What can I get you..."',
     backgroundColor: '#A0522D',
+    image:
+      'https://plus.unsplash.com/premium_photo-1679809447076-78b169ace3a6?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjF8fG1lZGlldmFsJTIwc3RvcmV8ZW58MHx8MHx8fDA%3D',
     actions: [
       {
         name: 'Buy a Lockpick (1 Coin)',
@@ -524,6 +531,9 @@ Currently, there are 6 possible endings. Whether an ending is good or bad is sub
     title: "Mayor's House",
     description: 'A well-maintained house in the center of town. The mayor sits behind a large desk, looking troubled.',
     backgroundColor: '#A0522D',
+    image: '/img/oakhaven/mayor.png',
+    blur: 0,
+    textBackground: true,
     actions: [
       {
         name: 'Show the Mayoral Request',
@@ -557,7 +567,9 @@ Currently, there are 6 possible endings. Whether an ending is good or bad is sub
     title: 'Old Mill Exterior',
     description:
       "The old watermill stands by a stagnant creek on the edge of the village. It's dilapidated, and the water wheel is still. A faint, unsettling scratching sound comes from within.",
-    backgroundColor: '#8B4513',
+    image: 'https://cdn.pixabay.com/photo/2023/05/06/13/58/mill-7974363_1280.jpg',
+    blur: 6,
+    textBackground: true,
     links: [
       {
         name: 'Enter the Old Mill',
@@ -604,7 +616,9 @@ Currently, there are 6 possible endings. Whether an ending is good or bad is sub
     title: 'Old Chapel Exterior',
     description:
       "The village chapel is a small, stone building with boarded-up windows. It looks abandoned, but you feel a strange coldness emanating from it. There's a heavy oak door at the front and a smaller, overgrown path leading around the back.",
-    backgroundColor: '#708090',
+    image: '/img/oakhaven/chapel_exterior.png',
+    blur: 4,
+    textBackground: true,
     links: [
       {
         name: 'Enter the Front Door',
@@ -635,7 +649,7 @@ Currently, there are 6 possible endings. Whether an ending is good or bad is sub
     id: 'oakhaven_chapel_locked_Q2',
     title: 'The Door is Locked',
     description: 'The door is locked. If only you had something to unlock it.',
-    backgroundColor: '#8B4513',
+    backgroundColor: '#434365',
     actions: [
       {
         name: 'Smash the lock with your fists',
@@ -654,6 +668,9 @@ Currently, there are 6 possible endings. Whether an ending is good or bad is sub
     id: 'oakhaven_chapel_interior_Q2',
     title: 'Old Chapel Interior',
     description: 'A cathedral room with faded scarlet pews and an oak pulpit.',
+    image: '/img/oakhaven/chapel_interior.png',
+    blur: 4,
+    textBackground: true,
     actions: [
       {
         name: 'Pray at the altar',
@@ -683,7 +700,8 @@ Currently, there are 6 possible endings. Whether an ending is good or bad is sub
     title: 'Forbidden Cellar Entrance',
     description:
       'Behind the chapel, hidden by overgrown bushes, you find a heavy, iron cellar door. A strange symbol is carved into the wood.',
-    backgroundColor: '#465058',
+    image: '/img/oakhaven/chapel_cellar_entrance.png',
+    blur: 4,
     links: [
       {
         name: 'Enter the Forbidden Cellar',
@@ -702,7 +720,8 @@ Currently, there are 6 possible endings. Whether an ending is good or bad is sub
     title: 'The Forbidden Cellar',
     description:
       "You enter the cellar, and the door slams shut behind you. You are locked in. \n\nThe air in the cellar is musty and smells of damp earth. Flickering torchlight from deeper within reveals a group of rough-looking men gathered around a table. You've stumbled upon the bandits' hideout.",
-    backgroundColor: '#2C3E50',
+    image: '/img/oakhaven/chapel_cellar.png',
+    textBackground: true,
     actions: [
       {
         name: 'Try to Sneak Past (Risky)',
@@ -748,7 +767,9 @@ Currently, there are 6 possible endings. Whether an ending is good or bad is sub
     title: 'Ending: Confrontation with the Bandits',
     description:
       "The bandits turn, their faces flickering in the light of their torches. One of the figures steps forward. 'You shouldn't have come here!' \n\nHe raises his axe and strikes you down. You are slain.",
-    backgroundColor: '#1A2430',
+    image: '/img/oakhaven/chapel_cellar.png',
+    textBackground: true,
+    blur: 6,
     links: [
       {
         name: 'Restart from checkpoint',
@@ -810,7 +831,8 @@ Currently, there are 6 possible endings. Whether an ending is good or bad is sub
     title: 'Confrontation with the Bandits',
     description:
       "The bandits turn to face you. Seeing the [strange_symbol_medallion] in your possession, their leader steps forward. 'Ah, you're the buyer! I'm glad you're here. We've got the scroll ready for you.'",
-    backgroundColor: '#1A2430',
+    image: '/img/oakhaven/chapel_cellar.png',
+    textBackground: true,
     actions: [
       {
         name: 'Buy the Scroll',
@@ -838,7 +860,9 @@ Currently, there are 6 possible endings. Whether an ending is good or bad is sub
     title: 'Sleeping Dragon Inn',
     description:
       'The inn looks closed, with a burly guard standing at the door. He eyes you suspiciously, while barring your way. Perhaps you could bribe him with a coin.',
-    backgroundColor: '#8B4513',
+    image: '/img/oakhaven/sleeping_dragon_exterior.png',
+    blur: 0,
+    textBackground: true,
     actions: [
       {
         name: 'Bribe the Guard',
@@ -861,9 +885,11 @@ Currently, there are 6 possible endings. Whether an ending is good or bad is sub
   {
     id: 'oakhaven_inn_interior_Q2',
     title: 'Sleeping Dragon Inn Interior',
+    image: '/img/oakhaven/sleeping_dragon_inn.png',
+    blur: 0,
+    textBackground: true,
     description:
       'The inn is dimly lit and mostly empty. A scholarly-looking man sits in the corner, surrounded by books and scrolls.',
-    backgroundColor: '#5A3A1A',
     actions: [
       {
         name: 'Greet the Scholar',
@@ -943,7 +969,8 @@ You could probably find a [glowing_crystal_shard_cave] near the cave upstream of
     title: 'Secret Chamber',
     description:
       "You find a hidden trapdoor in the ground in the forest. Inside, you discover a chamber filled with robed figures. They turn towards you, whispering... 'Is that really him?'",
-    backgroundColor: '#2C3E50',
+    image: '/img/shadowcult_chamber.png',
+    blur: 6,
     actions: [
       {
         name: 'Step Forward',
@@ -1041,7 +1068,9 @@ You could probably find a [glowing_crystal_shard_cave] near the cave upstream of
     title: 'Ending: Ritual Reversed',
     description:
       "You wake up in Oakhaven. The mayor is there to greet you. 'Thank you for saving us!'\n\nYou are hailed as a hero, and the shadow cult is destroyed. The world is saved!",
-    backgroundColor: '#000000',
+    image: '/img/oakhaven/medieval-village.jpg',
+    blur: 10,
+    textBackground: true,
     links: [
       {
         name: 'Restart from checkpoint',

@@ -5,16 +5,16 @@
       :style="pageStyle"
     ></div>
     <div class="relative p-8 flex flex-col justify-between gap-4 h-full text-white">
-      <div
-        class="flex justify-between gap-4 ml-4 mx-8"
-        :class="props.page.textBackground && 'bg-slate-500/90 rounded-lg px-4 py-2 border border-black'"
-      >
-        <div class="flex-2/3">
+      <div class="flex justify-between gap-4 ml-4 mx-8">
+        <div
+          class="flex-2/3 self-start"
+          :class="props.page.textBackground && 'bg-slate-500/90 rounded-lg px-4 py-2 border border-black'"
+        >
           <h2 class="text-4xl">{{ page.title }}</h2>
           <p v-html="pageDescription" class="whitespace-pre-line"></p>
         </div>
         <div v-if="sideImg" class="flex-1/3">
-          <img :src="sideImg" class="max-h-[200px] rounded-lg ml-auto" />
+          <img :src="sideImg" class="max-h-[200px] rounded-lg mx-auto" />
         </div>
       </div>
       <div v-if="props.page.actions?.length" class="flex flex-wrap justify-center gap-4">
@@ -68,7 +68,7 @@ const props = defineProps({
 
 const pageStyle = computed(() => {
   if (props.page.image && !props.page.backgroundColor) {
-    return `background-image: url(${props.page.image}); filter: blur(${props.page.blur ?? 0}px); transform: scale(1.05)`;
+    return `background-image: url(${props.page.image}); filter: blur(${props.page.blur ?? 0}px); transform: scale(1.05); background-size: cover; background-position: center; background-repeat: no-repeat;`;
   }
   return `background-color: ${props.page.backgroundColor ?? 'slategray'}`;
 });
