@@ -1,31 +1,7 @@
-import { state } from './state';
+import { state } from '../state';
 
-/**
- * @typedef {Object} Item
- * @property {string} id
- * @property {string} name
- * @property {string} description
- * @property {string} [image]
- * @property {boolean} [hidden] for items that are not visible to the player, but used in conditions
- * @property {function} [onClick] for items that can be interacted with
- */
-
-/** @type {Item[]} */
-export const ITEMS = [
-  {
-    id: 'copper_coin',
-    name: 'Copper Coin',
-    description: 'A single, worn copper coin. It feels heavier than it looks.',
-    image:
-      'https://static.vecteezy.com/system/resources/previews/000/404/975/non_2x/vector-illustration-of-a-copper-coin.jpg',
-  },
-  {
-    id: 'lockpick',
-    name: 'A Lockpick',
-    description: 'A small, concealable & slender metal tool for manipulating tumblers. (Single use)',
-    image:
-      'https://thumbs.dreamstime.com/b/lockpick-icon-editable-bold-outline-color-fill-design-vector-illustration-lockpick-icon-247870269.jpg',
-  },
+/** @type {import('@/game/items').Item[]} */
+export default [
   {
     id: 'waterlogged_plea',
     name: 'Waterlogged Plea',
@@ -60,14 +36,11 @@ export const ITEMS = [
     image:
       'https://static.vecteezy.com/system/resources/previews/012/686/935/non_2x/medallion-icon-design-free-vector.jpg',
   },
-  // TODO: this does nothing now, can we find a purpose?
   {
-    id: 'silver_dagger_inscribed',
-    name: 'Inscribed Silver Dagger',
-    description:
-      'A well-crafted silver dagger with faint runes etched along its blade. It feels potent against unseen forces.',
-    image:
-      'https://thumbs.dreamstime.com/b/dagger-icon-vector-isolated-white-background-your-web-mobile-app-design-dagger-logo-concept-dagger-icon-vector-sign-134071239.jpg',
+    id: 'hidden_chapel_door_unlocked',
+    name: 'Chapel Door Unlocked',
+    description: 'Player has unlocked the chapel door.',
+    hidden: true,
   },
   {
     id: 'shadowbane_charm_oakhaven',
@@ -96,18 +69,18 @@ export const ITEMS = [
       state.openDialog(
         'Shadowcult Scroll (Translated)',
         `It reads:
-Shadowcult Rules For Dummies
-
-1. Don't share the location of our hideout: a hidden underground chamber off the forest path.
-*You think that's near where you woke up!*
-
-2. Our sacred ritual is to be performed only by our glorious leader. 
-
-3. Villagers are required as sacrifices. It is your duty to prepare them.
-
-4. The dark god A'kul is our lord. He will grant us power beyond our wildest dreams. It is imperative that we show honor to our lord.
-
-5. We WILL summon the dark god, and by his side we will rule the world.`,
+    Shadowcult Rules For Dummies
+    
+    1. Don't share the location of our hideout: a hidden underground chamber off the forest path.
+    *You think that's near where you woke up!*
+    
+    2. Our sacred ritual is to be performed only by our glorious leader. 
+    
+    3. Villagers are required as sacrifices. It is your duty to prepare them.
+    
+    4. The dark god A'kul is our lord. He will grant us power beyond our wildest dreams. It is imperative that we show honor to our lord.
+    
+    5. We WILL summon the dark god, and by his side we will rule the world.`,
       );
     },
   },
@@ -137,9 +110,3 @@ Shadowcult Rules For Dummies
     hidden: true,
   },
 ];
-
-/** @type {Record<string, Item>} */
-export const ITEM_MAP = ITEMS.reduce((acc, item) => {
-  acc[item.id] = item;
-  return acc;
-}, {});

@@ -2,11 +2,7 @@
   <section class="p-3 bg-gray-900 rounded-xl text-white border border-gray-700">
     <h2 class="text-2xl font-bold mb-4">Action Unlocker</h2>
     <div class="flex flex-col gap-2">
-      <Autocomplete 
-        :items="PAGES" 
-        placeholder="Search pages..."
-        @select="selectPage"
-      />
+      <Autocomplete :items="PAGES" placeholder="Search pages..." @select="selectPage" />
 
       <div v-if="selectedPage" class="mt-4">
         <div class="flex flex-wrap gap-1 mb-2">

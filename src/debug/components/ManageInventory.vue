@@ -3,12 +3,7 @@
     <h2 class="text-2xl font-bold mb-4">Manage Inventory</h2>
     <div class="flex flex-col gap-2">
       <!-- Item Search -->
-      <Autocomplete 
-        :items="ITEMS" 
-        placeholder="Search items to add..."
-        :filterFunction="filterItems"
-        @select="addItem"
-      >
+      <Autocomplete :items="ITEMS" placeholder="Search items to add..." :filterFunction="filterItems" @select="addItem">
         <template #item="{ item }">
           <div class="font-medium">{{ item.name }}</div>
           <div class="text-sm text-gray-400 font-mono">{{ item.id }}{{ item.hidden ? ' (hidden)' : '' }}</div>
