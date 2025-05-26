@@ -34,12 +34,12 @@
       <div class="mb-12 transform animate-slide-down">
         <div class="relative">
           <h1
-            class="text-8xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 animate-gradient-x drop-shadow-2xl"
+            class="text-8xl pb-2 font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 animate-gradient-x drop-shadow-2xl"
           >
             {{ promptBuilder.person || 'Mystery Person' }}
           </h1>
           <!-- Glowing effect behind text -->
-          <div class="absolute inset-0 text-8xl font-black text-cyan-400 blur-lg opacity-50 animate-pulse">
+          <div class="absolute pb-2 inset-0 text-8xl font-black text-cyan-400 blur-lg opacity-50 animate-pulse">
             {{ promptBuilder.person || 'Mystery Person' }}
           </div>
         </div>
@@ -56,7 +56,7 @@
             class="absolute inset-0 rounded-3xl bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 opacity-75 blur-sm animate-pulse"
           ></div>
           <div class="relative z-10">
-            <h2 class="text-5xl font-bold text-white mb-2 animate-text-shimmer">
+            <h2 class="text-5xl font-bold text-white pb-2 animate-text-shimmer">
               {{ promptBuilder.title || 'Amazing Presentation' }}
             </h2>
           </div>

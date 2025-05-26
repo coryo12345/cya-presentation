@@ -9,7 +9,7 @@
       @action="handleAction"
     />
     <section v-else class="h-full w-full">
-      <img src="/img/original_prompt.png" alt="original prompt" class="w-full" />
+      <img src="/img/original_prompt.png" alt="original prompt" class="w-full max-w-screen max-h-screen" />
       <button
         class="absolute bottom-4 left-1/2 -translate-1/2 bg-red-700 hover:bg-red-800 text-white rounded-2xl text-4xl px-4 py-2 cursor-pointer"
         @click="presentationPromptPick = true"
