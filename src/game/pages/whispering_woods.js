@@ -517,7 +517,7 @@ export default [
         description: 'Try to find this glade on the map',
         condition: () => state.inventory.includes(ITEM_MAP['old_map_fragment_amulet']),
         effect:
-          "You pull out the [old_map_fragment_amulet] and try to find the glade on the map. It's not there. You're not sure what to do.",
+          "You pull out the [old_map_fragment_amulet] and try to find the glade on the map. It's not there. But you do see a warning on the map 'Beware! Not all is as it seems!' Maybe you shouldn't be here.",
       },
     ],
     links: [
