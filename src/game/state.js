@@ -4,8 +4,6 @@ import { reactive } from 'vue';
 import { ITEM_MAP } from './items';
 import { endings } from './endings';
 
-// TODO - images
-
 // TODO - third quest area
 
 const storedState = useStorage('cyoa-app', {
