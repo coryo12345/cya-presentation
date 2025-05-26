@@ -52,9 +52,8 @@
 </template>
 
 <script setup>
-import { ITEM_MAP } from '@/game/items';
 import { interpolateItemNames, state } from '@/game/state';
-import { computed, ref, watch } from 'vue';
+import { computed } from 'vue';
 
 /** @type {{
  * page:import('@/game/pages').Page

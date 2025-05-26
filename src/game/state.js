@@ -4,9 +4,7 @@ import { reactive } from 'vue';
 import { ITEM_MAP } from './items';
 import { endings } from './endings';
 
-// TODO - quest to return silver locket to martha, gives you another dagger. Add more hints to locket about bringing it to oakhaven.
-
-// TODO - lost in woods loader screen
+// TODO - images
 
 // TODO - third quest area
 

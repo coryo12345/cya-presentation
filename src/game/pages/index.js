@@ -40,6 +40,7 @@ import { endings } from '../endings';
  * @property {PageLink[]} [links]
  * @property {PageAction[]} [actions]
  * @property {boolean} [isEnding]
+ * @property {'walking'} [loader]
  */
 
 /** @type {Page[]} */

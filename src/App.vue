@@ -2,6 +2,7 @@
   <DebugApp v-if="showDebug"></DebugApp>
   <main v-else class="h-screen w-screen relative">
     <MainMenu v-if="currentPage.id === 'main_menu'" @start-game="showMainMenu = false"></MainMenu>
+    <PageLoader v-else-if="showLoader" :page="currentPage"></PageLoader>
     <Page v-else :page="currentPage"></Page>
     <RestartDialog class="absolute top-2 left-2"></RestartDialog>
     <InventorySidebar class="absolute top-2 right-2"></InventorySidebar>
@@ -14,13 +15,24 @@ import EffectDialog from '@/components/EffectDialog.vue';
 import InventorySidebar from '@/components/InventorySidebar.vue';
 import MainMenu from '@/components/MainMenu.vue';
 import Page from '@/components/Page.vue';
+import PageLoader from '@/components/PageLoader.vue';
 import RestartDialog from '@/components/RestartDialog.vue';
 import DebugApp from '@/debug/DebugApp.vue';
 import { state } from '@/game/state';
-import { computed, ref } from 'vue';
+import { computed, ref, watch } from 'vue';
 
 // only need to run this on creation
 const showDebug = window.location.pathname.toLocaleLowerCase() === '/debug';
 
 const currentPage = computed(() => state.currentPage);
+
+const showLoader = ref(false);
+watch(currentPage, () => {
+  if (currentPage.value.loader) {
+    showLoader.value = true;
+    setTimeout(() => {
+      showLoader.value = false;
+    }, 5000);
+  }
+});
 </script>

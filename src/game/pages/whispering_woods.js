@@ -21,7 +21,6 @@ export default [
         effect:
           'The carvings are ancient runes, weathered by time. Using your [charcoal_stick_amulet], you manage to make a [runic_carving_rubbing_amulet]. They seem to depict a cycle of growth, decay, and rebirth, with a central amulet symbol. You feel a faint hum of old magic.',
       },
-      // if the player doesn't have charcoal
       {
         name: 'Examine strange carvings on an old oak',
         description: 'Inspect the unusual markings on a massive, ancient oak.',
@@ -189,9 +188,6 @@ export default [
         action: () => {
           state.removeItem(ITEM_MAP['moonpetal_herb_amulet']);
           state.removeItem(ITEM_MAP['hermit_needs_moonpetal_amulet']);
-          // Potentially give another item or crucial clue here.
-          // For now, let's give another warding stone, or enhance the existing one.
-          // Or, if player doesn't have a map, give the map fragment.
           if (!state.inventory.includes(ITEM_MAP['old_map_fragment_amulet'])) {
             state.addItem(ITEM_MAP['old_map_fragment_amulet']);
             state.openDialog(
@@ -460,10 +456,10 @@ export default [
   {
     id: 'whispering_woods_lost_amulet',
     title: 'Lost in the Woods',
-    // TODO it would be cool to have a loader screen here to make it feel like it's taking time
     description:
       'Your attempt to forge your own path leads you deep into a disorienting, trackless part of the Whispering Woods. The whispers mock you, twisting familiar sounds into threats. After what feels like an eternity of stumbling in circles, you find yourself spat out at the edge of the woods, exhausted, disoriented, and no closer to your goal.',
     backgroundColor: '#3A3A3A',
+    loader: 'walking',
     links: [
       {
         name: 'Return to the Whispering Woods Edge',
