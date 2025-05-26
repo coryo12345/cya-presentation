@@ -1,12 +1,14 @@
 <template>
   <DebugApp v-if="showDebug"></DebugApp>
   <main v-else class="h-screen w-screen relative">
-    <MainMenu v-if="currentPage.id === 'main_menu'" @start-game="showMainMenu = false"></MainMenu>
+    <MainMenu v-if="isMainMenu" @start-game="showMainMenu = false"></MainMenu>
     <PageLoader v-else-if="showLoader" :page="currentPage"></PageLoader>
     <Page v-else :page="currentPage"></Page>
-    <RestartDialog class="absolute top-2 left-2"></RestartDialog>
-    <InventorySidebar class="absolute top-2 right-2"></InventorySidebar>
-    <EffectDialog></EffectDialog>
+    <template v-if="!isMainMenu">
+      <RestartDialog class="absolute top-2 left-2"></RestartDialog>
+      <InventorySidebar class="absolute top-2 right-2"></InventorySidebar>
+      <EffectDialog></EffectDialog>
+    </template>
   </main>
 </template>
 
@@ -25,6 +27,7 @@ import { computed, ref, watch } from 'vue';
 const showDebug = window.location.pathname.toLocaleLowerCase() === '/debug';
 
 const currentPage = computed(() => state.currentPage);
+const isMainMenu = computed(() => currentPage.value.id === 'main_menu');
 
 const showLoader = ref(false);
 watch(currentPage, () => {
