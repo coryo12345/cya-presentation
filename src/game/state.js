@@ -5,7 +5,6 @@ import { ITEM_MAP } from './items';
 import { endings } from './endings';
 
 // TODO - quest to return silver locket to martha, gives you another dagger. Add more hints to locket about bringing it to oakhaven.
-// TODO - compress images
 
 // TODO - lost in woods loader screen
 
