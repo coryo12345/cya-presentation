@@ -9,6 +9,7 @@ export default [
     title: 'Deeper Forest Path',
     description:
       'The forest path becomes wilder here, ancient trees loom with twisted branches. Sunlight barely penetrates the canopy. A barely visible side trail branches off, leading towards a secluded area.',
+    image: '/img/sylvandell/deep-forest.jpg',
     blur: 8,
     textBackground: true,
     actions: [
@@ -99,7 +100,8 @@ export default [
     title: 'A Small Clearing',
     description:
       'A small, unnaturally quiet clearing. A humble, moss-covered hut sits in the center, a thin wisp of smoke rising from its chimney. Strange, small bone chimes tinkle faintly in the breeze.',
-    blur: 5,
+    image: '/img/sylvandell/forest-hut.jpg',
+    blur: 6,
     textBackground: true,
     links: [
       {
@@ -119,7 +121,8 @@ export default [
     title: "Hermit's Hut",
     description:
       "An old hermit with eyes that seem to see through you peers from the doorway. He's wrapped in simple, patched robes. 'Few disturb my solitude. Why have you come?'",
-    blur: 3,
+    backgroundColor: '#562f0d',
+    image: '/img/sylvandell/hermit.png',
     textBackground: true,
     actions: [
       {
@@ -382,7 +385,8 @@ export default [
     title: 'Edge of the Whispering Woods',
     description:
       'The air grows cold and heavy. Ancient, gnarled trees press close, their branches intertwining like skeletal fingers. A faint, unsettling whispering seems to emanate from the woods themselves, a chorus of indecipherable voices. This is the threshold of the dreaded Whispering Woods.',
-    blur: 6,
+    image: '/img/sylvandell/deep-forest.jpg',
+    blur: 8,
     textBackground: true,
     actions: [
       {
@@ -417,7 +421,9 @@ export default [
     title: 'Whispering Woods - Twisting Path',
     description:
       'The path is barely discernible, covered in centuries of fallen leaves. Strange plants grow along the edges of the path. Shadows dance in your peripheral vision, and the whispers are louder here, coiling around you. You feel a profound sense of being watched, of unseen things just beyond your sight.',
-    blur: 7,
+    image:
+      'https://images.pexels.com/photos/345522/pexels-photo-345522.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+    blur: 8,
     textBackground: true,
     actions: [
       {
@@ -470,9 +476,10 @@ export default [
   {
     id: 'whispering_woods_illusion_trap_amulet',
     title: 'Sunlit Glade',
+    image: '/img/sylvandell/fountain_glade.png',
     description:
       'The path unexpectedly leads you into a beautiful, sunlit glade. A sparkling fountain bubbles merrily in the center, and colorful birds sing from blossom-laden trees. It feels peaceful, a stark contrast to the oppressive woods. The whispers are very soft here, almost comfortingly sweet.',
-    blur: 2,
+    blur: 8,
     textBackground: true,
     actions: [
       {
@@ -531,7 +538,8 @@ export default [
     title: 'Whispering Woods - Silent Statues',
     description:
       'The woods grow denser and more ancient. You pass rows of moss-covered statues depicting forgotten guardians, their stone faces weathered and sorrowful. The whispers have faded here, replaced by an expectant silence. Through the trees, you glimpse the crumbling silhouette of a ruin.',
-    blur: 5,
+    image: '/img/sylvandell/silent_statues.png',
+    blur: 8,
     textBackground: true,
     links: [
       {
@@ -556,7 +564,7 @@ export default [
     title: "Guardian's Grove",
     description:
       "This secluded grove feels ancient and sorrowful, bathed in a dim, ethereal light. A spectral guardian, more mist and moonlight than solid form, coalesces before you. Its voice is like the rustling of dry leaves: 'Why do you disturb this sacred place, mortal? Few find their way here.'",
-    blur: 4,
+    image: '/img/sylvandell/spectral_guardian.png',
     textBackground: true,
     actions: [
       {
@@ -637,6 +645,7 @@ export default [
     title: "The Guardian's Riddle",
     description:
       "The Spectral Guardian inclines its misty head. 'Very well. If you seek passage or boon, answer this: \n\nI have cities, but no houses.\nI have mountains, but no trees.\nI have water, but no fish.\n\nWhat am I?'",
+    image: '/img/sylvandell/spectral_guardian.png',
     textBackground: true,
     actions: [
       {
@@ -676,7 +685,9 @@ export default [
     title: 'Ruined Shrine Entrance',
     description:
       'Before you stands a crumbling stone shrine, half-swallowed by the encroaching forest. Roots like serpents crawl over its weathered stones. A heavy stone door, sealed shut by an ancient protective magic, blocks the only visible entrance. A curious, complex keyhole is set into the door.',
-    blur: 4,
+    image:
+      'https://images.pexels.com/photos/1534057/pexels-photo-1534057.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+    blur: 10,
     textBackground: true,
     actions: [
       {
@@ -720,7 +731,9 @@ export default [
     title: 'Shrine - Collapsed Wall',
     description:
       "You circle the shrine and find a section where the ancient stonework has partially collapsed, creating a small opening choked with rubble. It's far too small to squeeze through, but you can see a tiny glint of something metallic just within reach among the debris.",
-    blur: 3,
+    image:
+      'https://images.pexels.com/photos/1534057/pexels-photo-1534057.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+    blur: 10,
     textBackground: true,
     actions: [
       {
@@ -743,6 +756,8 @@ export default [
     title: 'Shrine - Inner Sanctum',
     description:
       "The air inside the sanctum is still, heavy with the scent of dust, dried herbs, and forgotten magic. Faded tapestries cling to the walls. On a weathered stone pedestal in the center of the circular room, rests the Amulet of Sylvandell on a pedastal. It emits a soft, pulsing light, cycling through hues of green, gold, and deep amber.\n\nThe two halves of the room are very distinct. The left half is full of bright flowers and greenery, the right half looks more autumnal, covered in dead leaves and withered plants with an orange glow.\n\nTo reach the pedastal, you'll have to take the steps on one of the sides",
+    image: '/img/sylvandell/shrine_inner_sanctum.png',
+    blur: 10,
     textBackground: true,
     links: [
       {
@@ -767,6 +782,8 @@ export default [
     title: 'Shrine - Inner Sanctum - Flowery Side',
     description:
       'You approach the pedestal from the left side. Around you are bright flowers and healthy plants. The Amulet of Sylvandell is glowing brightly, and you feel a sense of peace and tranquility.',
+    image: '/img/sylvandell/shrine_inner_left.png',
+    blur: 10,
     textBackground: true,
     actions: [
       {
@@ -815,6 +832,8 @@ export default [
     title: 'Shrine - Inner Sanctum - Autumnal Side',
     description:
       'You approach the pedestal from the right side. Around you are dead leaves and withered plants. The Amulet of Sylvandell is glowing brightly, and you feel a sense of peace and tranquility.',
+    image: '/img/sylvandell/shrine_inner_right.png',
+    blur: 10,
     textBackground: true,
     actions: [
       {
@@ -899,6 +918,9 @@ export default [
   {
     id: 'ending_hermit_feast_amulet',
     title: 'Ending: Feast of Eternity',
+    image: '/img/sylvandell/feast.png',
+    textBackground: true,
+    blur: 6,
     isEnding: true,
     description:
       'You turn around to find an impossibly long banquet table has materialized in the clearing, groaning under the weight of a magnificent feast. Roasted phoenix wings glisten with honey glaze, their edges still flickering with magical flame. Crystal bowls overflow with shimmering moonberry pudding that changes flavor with each spoonful. Loaves of cloudspun bread float gently above silver platters, soft as morning mist. Dragon-smoked venison releases tantalizing aromas into the air, while goblets of starlight wine cast dancing constellations across the tablecloth.\n\nAs you take your seat and begin to feast, you notice something remarkable - each dish you finish magically replenishes itself, the food as fresh and delectable as when it first appeared. The clearing fills with other guests who come and go like dreams - travelers, mystics, and magical beings all drawn to this eternal celebration.\n\nTime loses all meaning as you preside over this endless feast. Days and seasons blur together in a haze of culinary delights and fascinating conversation. You have become a legendary host in the Whispering Woods, keeper of a banquet that will never end.',
