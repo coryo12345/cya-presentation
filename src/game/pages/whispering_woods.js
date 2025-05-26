@@ -1,3 +1,4 @@
+import { getEndingLinks } from '../endings';
 import { ITEM_MAP } from '../items';
 import { state } from '../state';
 
@@ -378,20 +379,7 @@ export default [
     description:
       "You attempt to steal from the hunters. You think they aren't looking but they are too alert. They draw their bows and attack you. You are slain.",
     backgroundColor: '#1A2430',
-    links: [
-      {
-        name: 'Restart from checkpoint',
-        description: 'Go back',
-        onLink: () => state.loadCheckpoint(),
-        link_to: 'forest_path_start',
-      },
-      {
-        name: 'Game Over - Slain by the Hunters',
-        description: 'Try again?',
-        onLink: () => state.restart(),
-        link_to: 'tutorial',
-      },
-    ],
+    links: getEndingLinks('Slain by the Hunters'),
   },
   {
     id: 'whispering_woods_edge_amulet',
@@ -882,20 +870,7 @@ export default [
     description:
       "You drink deeply from the fountain. The water is sweeter than anything you've ever tasted, and an irresistible drowsiness washes over you. You lie down in the soft grass of the sunlit glade, falling into a deep, enchanted sleep, lost to the world forever. The Whispering Woods claims another soul, cradled in its most beautiful illusion.",
     backgroundColor: '#1A2430',
-    links: [
-      {
-        name: 'Restart from checkpoint',
-        description: 'Go back',
-        onLink: () => state.loadCheckpoint(),
-        link_to: 'forest_path_start',
-      },
-      {
-        name: 'Game Over - Lost in Dreams',
-        description: 'Try again?',
-        onLink: () => state.restart(),
-        link_to: 'tutorial',
-      },
-    ],
+    links: getEndingLinks('Lost in Dreams'),
   },
   {
     id: 'ending_spirit_wrath_amulet',
@@ -904,20 +879,7 @@ export default [
     description:
       'You foolishly attempt to strike the Spectral Guardian. Its misty form flares with an incandescent, cold rage. Ethereal tendrils, sharp as obsidian, lash out from its being, and your life force is drained away in an instant. Your aggression has earned you a permanent, silent place among the sorrowful watchers of the Whispering Woods.',
     backgroundColor: '#1A2430',
-    links: [
-      {
-        name: 'Restart from checkpoint',
-        description: 'Go back',
-        onLink: () => state.loadCheckpoint(),
-        link_to: 'forest_path_start',
-      },
-      {
-        name: 'Game Over - Judged Unworthy',
-        description: 'Try again?',
-        onLink: () => state.restart(),
-        link_to: 'tutorial',
-      },
-    ],
+    links: getEndingLinks('Judged Unworthy'),
   },
   {
     id: 'ending_wear_spring_amulet',
@@ -927,20 +889,7 @@ export default [
       'You fasten the [amulet_sylvandell_spring_amulet] around your neck. A joyous, irrepressible wave of energy surges through you, like the first thaw after a long winter. Colors seem brighter, the air fresher, and you feel an overwhelming urge to cultivate, to nurture, to bring forth new life. The world, to you, is now a garden of endless possibilities, waiting for your touch to bloom. You become a wandering beacon of hope and renewal.\n\nYou forever wander the Whispering Woods, a guardian of the unending spring.',
     backgroundColor: '#90EE90',
     textBackground: true,
-    links: [
-      {
-        name: 'Restart from checkpoint',
-        description: 'Go back',
-        onLink: () => state.loadCheckpoint(),
-        link_to: 'forest_path_start',
-      },
-      {
-        name: 'Game Over - A Verdant Future Awaits',
-        description: 'Try again?',
-        onLink: () => state.restart(),
-        link_to: 'tutorial',
-      },
-    ],
+    links: getEndingLinks('A Verdant Future Awaits'),
   },
   {
     id: 'ending_wear_autumn_amulet',
@@ -950,20 +899,7 @@ export default [
       'You place the [amulet_sylvandell_autumn_amulet] upon yourself. A profound, calm wisdom settles over your mind, like the quiet hush of a forest in late autumn. You see the beauty in endings as much as beginnings, the necessary harvest and the peaceful slumber that follows. You become a keeper of memories, a sage of cycles, understanding the deep currents that guide the world through its seasons of change. Your path is one of introspection and guidance for others navigating their own autumns.\n\nYou forever wander the Whispering Woods, a guardian of the golden cycle.',
     backgroundColor: '#EAAA00',
     textBackground: true,
-    links: [
-      {
-        name: 'Restart from checkpoint',
-        description: 'Go back',
-        onLink: () => state.loadCheckpoint(),
-        link_to: 'forest_path_start',
-      },
-      {
-        name: 'Game Over - Wisdom Guides Your Path',
-        description: 'Try again?',
-        onLink: () => state.restart(),
-        link_to: 'tutorial',
-      },
-    ],
+    links: getEndingLinks('Wisdom Guides Your Path'),
   },
   {
     id: 'ending_hermit_feast_amulet',
@@ -971,20 +907,7 @@ export default [
     isEnding: true,
     description:
       'You turn around to find an impossibly long banquet table has materialized in the clearing, groaning under the weight of a magnificent feast. Roasted phoenix wings glisten with honey glaze, their edges still flickering with magical flame. Crystal bowls overflow with shimmering moonberry pudding that changes flavor with each spoonful. Loaves of cloudspun bread float gently above silver platters, soft as morning mist. Dragon-smoked venison releases tantalizing aromas into the air, while goblets of starlight wine cast dancing constellations across the tablecloth.\n\nAs you take your seat and begin to feast, you notice something remarkable - each dish you finish magically replenishes itself, the food as fresh and delectable as when it first appeared. The clearing fills with other guests who come and go like dreams - travelers, mystics, and magical beings all drawn to this eternal celebration.\n\nTime loses all meaning as you preside over this endless feast. Days and seasons blur together in a haze of culinary delights and fascinating conversation. You have become a legendary host in the Whispering Woods, keeper of a banquet that will never end.',
-    links: [
-      {
-        name: 'Restart from checkpoint',
-        description: 'Go back',
-        onLink: () => state.loadCheckpoint(),
-        link_to: 'forest_path_start',
-      },
-      {
-        name: 'Game Over - You celebrate forever',
-        description: 'Try again?',
-        onLink: () => state.restart(),
-        link_to: 'tutorial',
-      },
-    ],
+    links: getEndingLinks('You celebrate forever'),
   },
   {
     id: 'ending_hermit_riches_amulet',
@@ -992,20 +915,7 @@ export default [
     isEnding: true,
     description:
       'The Hermit snaps his fingers. "Check your pocket," he says with a knowing smile. You reach in and find a small leather pouch that wasn\'t there before. The weight feels... modest. You look at him with slight disappointment.\n\nHis eyes twinkle mischievously. "Empty it out."\n\nYou pour the contents onto your palm - a decent sum of gold and silver coins, but hardly what you\'d call riches. You look up at him questioningly.\n\n"Now check the pouch again," he suggests.\n\nTo your amazement, the pouch is once again full of coins. You empty it again... and again... and again. Each time, it magically refills.\n\nWith unlimited wealth at your disposal, you purchase vast tracts of land and commission the finest architects and craftsmen. Soon, a magnificent castle rises from the forest edge, its spires reaching toward the heavens. A prosperous town grows around it, drawn by your patronage and generosity.\n\nYou spend your days in unimaginable luxury, hosting grand balls and feasts, collecting rare artifacts and artwork. Your name becomes legendary throughout the land - not just for your wealth, but for the splendor and beauty you\'ve brought to this once-quiet corner of the world.',
-    links: [
-      {
-        name: 'Restart from checkpoint',
-        description: 'Go back',
-        onLink: () => state.loadCheckpoint(),
-        link_to: 'forest_path_start',
-      },
-      {
-        name: 'Game Over - Life of luxury',
-        description: 'Try again?',
-        onLink: () => state.restart(),
-        link_to: 'tutorial',
-      },
-    ],
+    links: getEndingLinks('Life of luxury'),
   },
   {
     id: 'ending_hermit_receives_autumn_amulet',
@@ -1015,20 +925,7 @@ export default [
       "The Hermit's eyes widen. 'The Amulet of Sylvandell!' He reaches out and grasps the amulet in his hand. 'Long have I searched for it... The amulet shall renew me and restore my power!' You wait expectantly.\n\nYou notice the bags under his eyes become bigger and bigger. His hair begins to turn white before your eyes.\n\n'But wait... what is happening... this isn't... how... I should be...' his voice fades out as he collapses to the ground. You rush to his side, but he is already gone. Within moments he has turned to dust before you.\n\nYou are left alone in the clearing with the amulet. You hear it's whispers get louder and louder, and the world goes dark.",
     backgroundColor: '#FFDEAD',
     textBackground: true,
-    links: [
-      {
-        name: 'Restart from checkpoint',
-        description: 'Go back',
-        onLink: () => state.loadCheckpoint(),
-        link_to: 'forest_path_start',
-      },
-      {
-        name: "Game Over - You've killed your guide",
-        description: 'Try again?',
-        onLink: () => state.restart(),
-        link_to: 'tutorial',
-      },
-    ],
+    links: getEndingLinks("You've killed your guide"),
   },
   {
     id: 'amulet_destroyed_ending_amulet',
@@ -1037,19 +934,6 @@ export default [
     description:
       'With grim determination, you strike the Amulet of Sylvandell with the [silver_dagger_inscribed]. There is a deafening crack, a flash of blinding, multicolored light, and a shockwave that ripples through the shrine, shaking the very foundations of the Whispering Woods. The Amulet shatters into a thousand glittering, inert fragments, its ancient magic violently dispersed. The Woods groan as if in pain, and its ancient enchantments begin to unravel, the consequences unforeseen. You have broken a powerful artifact; its energy now seeps into the land unpredictably.',
     backgroundColor: '#404040',
-    links: [
-      {
-        name: 'Restart from checkpoint',
-        description: 'Go back',
-        onLink: () => state.loadCheckpoint(),
-        link_to: 'forest_path_start',
-      },
-      {
-        name: 'Game Over - The Shattered Balance',
-        description: 'Try again?',
-        onLink: () => state.restart(),
-        link_to: 'tutorial',
-      },
-    ],
+    links: getEndingLinks('The Shattered Balance'),
   },
 ];

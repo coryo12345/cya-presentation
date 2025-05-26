@@ -1,3 +1,4 @@
+import { getEndingLinks } from '../endings';
 import { ITEM_MAP } from '../items';
 import { state, interpolateItemNames } from '../state';
 
@@ -466,20 +467,7 @@ export default [
     image: '/img/oakhaven/chapel_cellar.png',
     textBackground: true,
     blur: 6,
-    links: [
-      {
-        name: 'Restart from checkpoint',
-        description: 'Go back',
-        onLink: () => state.loadCheckpoint(),
-        link_to: 'forest_path_start',
-      },
-      {
-        name: 'Game Over - Slain by the Bandits',
-        description: 'Try again?',
-        onLink: () => state.restart(),
-        link_to: 'tutorial',
-      },
-    ],
+    links: getEndingLinks('Slain by the Bandits'),
   },
   {
     id: 'oakhaven_cellar_sneak_fail_Q2',
@@ -488,20 +476,7 @@ export default [
     description:
       "You attempt to sneak past the bandits, but they are too alert. 'You're not getting away with that!' \n\nThey turn and attack you. You are slain.",
     backgroundColor: '#1A2430',
-    links: [
-      {
-        name: 'Restart from checkpoint',
-        description: 'Go back',
-        onLink: () => state.loadCheckpoint(),
-        link_to: 'forest_path_start',
-      },
-      {
-        name: 'Game Over - Slain by the Bandits',
-        description: 'Try again?',
-        onLink: () => state.restart(),
-        link_to: 'tutorial',
-      },
-    ],
+    links: getEndingLinks('Slain by the Bandits'),
   },
   {
     id: 'oakhaven_bandit_treasure_Q2',
@@ -711,20 +686,7 @@ export default [
     description:
       "The cultists bow down to you. 'Welcome back, our lord. We will serve you faithfully.'\n\nYou perform the ritual, and the darkness claims you. A'kul is summoned, and the world is plunged into darkness.\n\nThe shadow cult has won, with you as their leader and their dark god A'kul at the helm.",
     backgroundColor: '#000000',
-    links: [
-      {
-        name: 'Restart from checkpoint',
-        description: 'Go back',
-        onLink: () => state.loadCheckpoint(),
-        link_to: 'forest_path_start',
-      },
-      {
-        name: 'Game Over - Dark Lord',
-        description: 'Try again?',
-        onLink: () => state.restart(),
-        link_to: 'tutorial',
-      },
-    ],
+    links: getEndingLinks('Dark Lord'),
   },
   {
     id: 'game_over_cult_sacrifice_Q2',
@@ -733,20 +695,7 @@ export default [
     description:
       "You try to destroy the altar, but the cultists stop you before you can make any progress. They overpower you and sacrifice you to A'kul. You are slain.",
     backgroundColor: '#000000',
-    links: [
-      {
-        name: 'Restart from checkpoint',
-        description: 'Go back',
-        onLink: () => state.loadCheckpoint(),
-        link_to: 'forest_path_start',
-      },
-      {
-        name: "Game Over - Sacrificed to A'kul",
-        description: 'Try again?',
-        onLink: () => state.restart(),
-        link_to: 'tutorial',
-      },
-    ],
+    links: getEndingLinks("Sacrificed to A'kul"),
   },
   {
     id: 'game_over_ritual_reversed_Q2',
@@ -771,19 +720,6 @@ export default [
     image: '/img/oakhaven/medieval-village.jpg',
     blur: 6,
     textBackground: true,
-    links: [
-      {
-        name: 'Restart from checkpoint',
-        description: 'Go back',
-        onLink: () => state.loadCheckpoint(),
-        link_to: 'forest_path_start',
-      },
-      {
-        name: 'Game Over - Ritual Reversed',
-        description: 'Try again?',
-        onLink: () => state.restart(),
-        link_to: 'tutorial',
-      },
-    ],
+    links: getEndingLinks('Ritual Reversed'),
   },
 ];
