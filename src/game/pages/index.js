@@ -51,7 +51,7 @@ You can restart the game at any time by clicking the restart button in the top l
 
 You can also view your inventory by clicking the inventory button in the top right corner.
 
-Currently, there are 6 possible endings. Whether an ending is good or bad is subjective. Some endings are based on random chance.`,
+Currently, there are 6 possible endings. Whether an ending is good or bad is subjective. Some endings are based on random chance. Not every ending is from a death, some are just the conclusion of a story.`,
     backgroundColor: 'slategray',
     image:
       'https://shopgreatpretenders.com/cdn/shop/files/Untitleddesign-2023-08-23T101829.266_ee7c6476-c595-492f-be70-3357b1a31e3e.png?v=1692800320&width=1600',

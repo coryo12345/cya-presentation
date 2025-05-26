@@ -5,7 +5,7 @@
       <p class="mb-4 whitespace-pre-line" v-html="state.dialog.description"></p>
       <div class="flex justify-end gap-3">
         <button
-          @click="state.dialog.show = false"
+          @click="close"
           class="px-4 py-2 bg-blue-600 text-white hover:bg-blue-700 rounded-md transition-colors cursor-pointer"
         >
           Close
@@ -17,4 +17,11 @@
 
 <script setup>
 import { state } from '@/game/state';
+
+function close() {
+  state.dialog.show = false;
+  if (state.dialog.callback && typeof state.dialog.callback === 'function') {
+    state.dialog.callback();
+  }
+}
 </script>

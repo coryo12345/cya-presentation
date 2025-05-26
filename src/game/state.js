@@ -3,9 +3,17 @@ import { useStorage } from '@vueuse/core';
 import { reactive } from 'vue';
 import { ITEM_MAP } from './items';
 
-// TODO get images for current areas/items
+// TODO - build main menu, and ending tracker screen
+// TODO - compress images
 
-// TODO second quest!
+// TODO - lost in woods loader screen
+
+// TODO - third quest area
+
+// TODO - cross area quests
+//    1. quest to return silver locket to martha (could give you some item that can be used in third quest area for a hidden ending)
+//    2. use amulet of sylvandell in shadowcult ritual, alternate ending
+//    3. give the amulet of sylvandell to martha
 
 const storedState = useStorage('cyoa-app', {
   /** @type {string[]} */
@@ -87,15 +95,18 @@ export const state = reactive({
     show: false,
     title: '',
     description: '',
+    callback: null,
   },
   /**
    * @param {string} title
    * @param {string} description
+   * @param {() => void} callback
    */
-  openDialog(title, description) {
+  openDialog(title, description, callback = null) {
     this.dialog.show = true;
     this.dialog.title = interpolateItemNames(title, true).text;
     this.dialog.description = interpolateItemNames(description, true).text;
+    this.dialog.callback = callback;
   },
   /**
    * @param {import('@/game/pages').Page} page
