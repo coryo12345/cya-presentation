@@ -25,6 +25,7 @@ export default [
   {
     id: 'silver_locket_lost_martha',
     name: 'Sapphire Heart Locket',
+    image: '/icon/necklace-heart.svg',
     description:
       'A small, tarnished silver locket. The pendant is shaped like a heart, with a small blue gem in the center.',
   },

@@ -6,11 +6,13 @@ export default [
     id: 'charcoal_stick_amulet',
     name: 'Charcoal Stick',
     description: 'A simple stick of charcoal, useful for sketching or making rubbings.',
+    image: '/icon/crayon.svg',
   },
   {
     id: 'runic_carving_rubbing_amulet',
     name: 'Runic Carving Rubbing',
     description: 'A charcoal rubbing taken from ancient runes on an oak tree. The symbols are complex.',
+    image: '/icon/paper.svg',
   },
   {
     id: 'silver_dagger_inscribed',
@@ -24,6 +26,7 @@ export default [
     id: 'old_map_fragment_amulet',
     name: 'Old Map Fragment',
     description: '(Click to read)',
+    image: '/icon/map.svg',
     onClick: () => {
       state.openDialog(
         'Old Map Fragment',
@@ -34,6 +37,7 @@ export default [
   {
     id: 'warding_stone_amulet',
     name: 'Warding Stone',
+    image: '/icon/gem.svg',
     description: 'A smooth, grey stone given by the Hermit. It hums with a faint protective energy against illusions.',
   },
   {
@@ -46,6 +50,7 @@ export default [
     id: 'moonpetal_herb_amulet',
     name: 'Moonpetal Herb',
     description: "A rare, silvery herb that glows faintly in the dark. It's said to have restorative properties.",
+    image: '/icon/leaf.svg',
   },
   {
     id: 'hermit_needs_moonpetal_amulet',
@@ -69,16 +74,19 @@ export default [
     id: 'ancient_symposium_key_amulet',
     name: 'Ancient Symposium Key',
     description: 'An ornate, ancient key made of a dark, unknown metal. Its teeth form a complex, interwoven symbol.',
+    image: '/icon/key.svg',
   },
   {
     id: 'amulet_sylvandell_spring_amulet',
     name: 'Amulet of Sylvandell (Spring)',
     description: 'The Amulet of Sylvandell, resonating with the gentle energy of healing, balance, and vibrant life.',
+    image: '/icon/necklace-jewel.svg',
   },
   {
     id: 'amulet_sylvandell_autumn_amulet',
     name: 'Amulet of Sylvandell (Autumn)',
     description: 'The Amulet of Sylvandell, imbued with the quiet wisdom of cycles, endings, and ancient knowledge.',
+    image: '/icon/necklace-jewel.svg',
   },
   {
     id: 'hidden_gave_hermit_amulet',
