@@ -38,10 +38,16 @@ import whispering_woods from './whispering_woods';
  * @property {string} [backgroundColor]
  * @property {PageLink[]} [links]
  * @property {PageAction[]} [actions]
+ * @property {boolean} [isEnding]
  */
 
 /** @type {Page[]} */
 export const PAGES = [
+  {
+    id: 'main_menu',
+    title: 'Main Menu',
+    description: '',
+  },
   {
     id: 'tutorial',
     title: 'Tutorial',

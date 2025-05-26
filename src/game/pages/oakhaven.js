@@ -460,6 +460,7 @@ export default [
   {
     id: 'oakhaven_bandit_confrontation_fail_Q2',
     title: 'Ending: Confrontation with the Bandits',
+    isEnding: true,
     description:
       "The bandits turn, their faces flickering in the light of their torches. One of the figures steps forward. 'You shouldn't have come here!' \n\nHe raises his axe and strikes you down. You are slain.",
     image: '/img/oakhaven/chapel_cellar.png',
@@ -483,6 +484,7 @@ export default [
   {
     id: 'oakhaven_cellar_sneak_fail_Q2',
     title: 'Ending: Caught by the Bandits',
+    isEnding: true,
     description:
       "You attempt to sneak past the bandits, but they are too alert. 'You're not getting away with that!' \n\nThey turn and attack you. You are slain.",
     backgroundColor: '#1A2430',
@@ -705,6 +707,7 @@ export default [
   {
     id: 'game_over_dark_embrace_Q2',
     title: 'Ending: Dark Embrace',
+    isEnding: true,
     description:
       "The cultists bow down to you. 'Welcome back, our lord. We will serve you faithfully.'\n\nYou perform the ritual, and the darkness claims you. A'kul is summoned, and the world is plunged into darkness.\n\nThe shadow cult has won, with you as their leader and their dark god A'kul at the helm.",
     backgroundColor: '#000000',
@@ -726,6 +729,7 @@ export default [
   {
     id: 'game_over_cult_sacrifice_Q2',
     title: 'Ending: Cult Sacrifice',
+    isEnding: true,
     description:
       "You try to destroy the altar, but the cultists stop you before you can make any progress. They overpower you and sacrifice you to A'kul. You are slain.",
     backgroundColor: '#000000',
@@ -761,6 +765,7 @@ export default [
   {
     id: 'game_over_ritual_reversed_celebration_Q2',
     title: 'Ending: Ritual Reversed',
+    isEnding: true,
     description:
       "You wake up in Oakhaven. The mayor is there to greet you. 'Thank you for saving us!'\n\nYou are hailed as a hero, and the shadow cult is destroyed. The world is saved!",
     image: '/img/oakhaven/medieval-village.jpg',

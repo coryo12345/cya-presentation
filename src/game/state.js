@@ -4,20 +4,16 @@ import { reactive } from 'vue';
 import { ITEM_MAP } from './items';
 
 // TODO - build main menu, and ending tracker screen
+// TODO - quest to return silver locket to martha, gives you another dagger. Add more hints to locket about bringing it to oakhaven.
 // TODO - compress images
 
 // TODO - lost in woods loader screen
 
 // TODO - third quest area
 
-// TODO - cross area quests
-//    1. quest to return silver locket to martha (could give you some item that can be used in third quest area for a hidden ending)
-//    2. use amulet of sylvandell in shadowcult ritual, alternate ending
-//    3. give the amulet of sylvandell to martha
-
 const storedState = useStorage('cyoa-app', {
   /** @type {string[]} */
-  history: ['tutorial'],
+  history: ['main_menu'],
   /** @type {Record<string, string[]>} */
   actionsTaken: {},
   /** @type {string[]} */
@@ -28,9 +24,10 @@ const checkpoint = useStorage('cyoa-app-checkpoint', '');
 
 export const state = reactive({
   restart() {
-    storedState.value.history = ['tutorial'];
+    storedState.value.history = ['main_menu'];
     storedState.value.inventory = [];
     storedState.value.actionsTaken = {};
+    checkpoint.value = '';
     return false;
   },
   /**
@@ -168,6 +165,9 @@ export const state = reactive({
     } catch (e) {
       return null;
     }
+  },
+  hasCheckpoint() {
+    return checkpoint.value && checkpoint.value.length;
   },
   /**
    * Debug methods for the debug app. NOT to be used for the actual game.
