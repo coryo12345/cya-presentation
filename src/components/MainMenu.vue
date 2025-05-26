@@ -22,15 +22,6 @@
         </button>
 
         <button
-          @click="continueGame"
-          class="rounded-lg px-6 py-3 border border-black cursor-pointer bg-amber-900 text-white hover:bg-amber-800 transition-colors"
-          :disabled="!hasSavedGame"
-          :class="{ 'opacity-50 cursor-not-allowed': !hasSavedGame }"
-        >
-          <div class="text-2xl">Continue</div>
-        </button>
-
-        <button
           @click="showEndings = true"
           class="rounded-lg px-6 py-3 border border-black cursor-pointer bg-amber-900 text-white hover:bg-amber-800 transition-colors"
         >
@@ -43,21 +34,13 @@
 </template>
 
 <script setup>
-import { computed, ref } from 'vue';
-import { state } from '@/game/state';
 import EndingTracker from '@/components/EndingTracker.vue';
-
-const hasSavedGame = computed(() => state.hasCheckpoint());
+import { state } from '@/game/state';
+import { ref } from 'vue';
 
 const startNewGame = () => {
   state.restart();
   state.goTo('tutorial');
-};
-
-const continueGame = () => {
-  if (hasSavedGame.value) {
-    state.loadCheckpoint();
-  }
 };
 
 const showEndings = ref(false);

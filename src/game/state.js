@@ -13,6 +13,7 @@ const storedState = useStorage('cyoa-app', {
   actionsTaken: {},
   /** @type {string[]} */
   inventory: [],
+  allowCheckpoints: true,
 });
 
 const checkpoint = useStorage('cyoa-app-checkpoint', '');
@@ -24,6 +25,12 @@ export const state = reactive({
     storedState.value.actionsTaken = {};
     checkpoint.value = '';
     return false;
+  },
+  set allowCheckpoints(allow) {
+    storedState.value.allowCheckpoints = !!allow;
+  },
+  get allowCheckpoints() {
+    return storedState.value.allowCheckpoints;
   },
   /**
    * @returns {import('@/game/pages').Page}

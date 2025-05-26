@@ -47,6 +47,7 @@ export function getEndingLinks(name) {
     {
       name: 'Restart from checkpoint',
       description: 'Go back',
+      condition: () => !!state.allowCheckpoints,
       onLink: () => state.loadCheckpoint(),
       link_to: 'forest_path_start',
     },

@@ -87,14 +87,20 @@ Currently, there are ${endings.getTotalEndingCount()} possible endings. Whether 
     ],
     links: [
       {
-        name: 'Start the game!',
+        name: 'Start (Easy Mode)',
         description: 'This is your main choice.\nMaking a choice will move you to a new screen.',
         link_to: 'forest_path_start',
+        onLink: () => {
+          state.allowCheckpoints = true;
+        },
       },
       {
-        name: 'You could have multiple options here',
-        description: 'This also starts the game.',
+        name: 'Start (Hard Mode)',
+        description: 'On hard mode, there are no checkpoints. Once you reach an ending, you have to start over.',
         link_to: 'forest_path_start',
+        onLink: () => {
+          state.allowCheckpoints = false;
+        },
       },
     ],
   },
