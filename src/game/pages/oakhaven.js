@@ -72,7 +72,7 @@ export default [
     description:
       "The square is dusty and mostly empty. A few closed market stalls stand forlornly. The largest buildings are the Mayor's House and the 'Sleeping Dragon' Inn, though the inn looks closed. Fearful eyes watch you from darkened windows.",
     image: '/img/oakhaven/medieval-village.jpg',
-    blur: 10,
+    blur: 6,
     textBackground: true,
     links: [
       {
@@ -769,7 +769,7 @@ export default [
     description:
       "You wake up in Oakhaven. The mayor is there to greet you. 'Thank you for saving us!'\n\nYou are hailed as a hero, and the shadow cult is destroyed. The world is saved!",
     image: '/img/oakhaven/medieval-village.jpg',
-    blur: 10,
+    blur: 6,
     textBackground: true,
     links: [
       {
