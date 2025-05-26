@@ -2,8 +2,8 @@ import { PAGES } from './pages';
 import { useStorage } from '@vueuse/core';
 import { reactive } from 'vue';
 import { ITEM_MAP } from './items';
+import { endings } from './endings';
 
-// TODO - build main menu, and ending tracker screen
 // TODO - quest to return silver locket to martha, gives you another dagger. Add more hints to locket about bringing it to oakhaven.
 // TODO - compress images
 
@@ -56,6 +56,10 @@ export const state = reactive({
    */
   goTo(pageId) {
     storedState.value.history.push(pageId);
+    const page = PAGES.find((p) => p.id === pageId);
+    if (page?.isEnding) {
+      endings.addAchievedEnding(pageId);
+    }
   },
   /**
    * @returns {import('@/game/items').Item[]}
@@ -167,7 +171,7 @@ export const state = reactive({
     }
   },
   hasCheckpoint() {
-    return checkpoint.value && checkpoint.value.length;
+    return !!checkpoint.value && checkpoint.value.length > 0;
   },
   /**
    * Debug methods for the debug app. NOT to be used for the actual game.

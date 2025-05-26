@@ -1,6 +1,6 @@
 import { useStorage } from '@vueuse/core';
 import { reactive } from 'vue';
-import { PAGES } from './pages';
+import { PAGES } from './pages/index';
 
 const endingsStorage = useStorage('cyoa-app-endings', []);
 
@@ -30,5 +30,8 @@ export const endings = reactive({
     ) {
       endingsStorage.value.push(ending);
     }
+  },
+  getTotalEndingCount() {
+    return PAGES?.filter((p) => !!p.isEnding).length || 0;
   },
 });

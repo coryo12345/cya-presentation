@@ -79,7 +79,13 @@ const sideImg = computed(() => {
   }
 });
 
-const pageDescription = computed(() => interpolateItemNames(props.page.description, true).text);
+const pageDescription = computed(
+  () =>
+    interpolateItemNames(
+      typeof props.page.description === 'function' ? props.page.description() : props.page.description,
+      true,
+    ).text,
+);
 const availableActions = computed(() => state.getAvailableActions);
 const availableLinks = computed(
   () => props.page.links?.filter((link) => (typeof link.condition === 'function' ? link.condition() : true)) ?? [],
