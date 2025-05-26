@@ -75,6 +75,23 @@ export default [
     image: '/img/oakhaven/medieval-village.jpg',
     blur: 6,
     textBackground: true,
+    actions: [
+      {
+        name: 'Look for Martha',
+        description: 'Try to find Martha in the village.',
+        condition: () =>
+          state.inventory.includes(ITEM_MAP['silver_locket_lost_martha']) &&
+          state.inventory.includes(ITEM_MAP['lost_locket_pamphlet']),
+        action: () => {
+          state.openDialog(
+            'Looking for Martha',
+            "You look for Martha in the village. You find her at the baker's shop.\n\nYou present her with the [silver_locket_lost_martha].\n\nShe is overjoyed and tears come to her eyes. She tells you this locket was from her late husband many many years ago. He had given it to her as a gift. She was heartbroken when he was lost at sea.\n\nShe thanks you profusely and offers you a [copper_coin] and a [silver_dagger_inscribed] as a reward.",
+          );
+          state.addItem(ITEM_MAP['copper_coin']);
+          state.addItem(ITEM_MAP['silver_dagger_inscribed']);
+        },
+      },
+    ],
     links: [
       {
         name: 'Examine the Notice Board',

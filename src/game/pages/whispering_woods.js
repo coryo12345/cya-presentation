@@ -438,7 +438,6 @@ export default [
       {
         name: 'Follow the path that *feels* right',
         description: 'Trust your instincts, despite the unsettling atmosphere.',
-        condition: () => !state.inventory.includes(ITEM_MAP['warding_stone_amulet']),
         link_to: 'whispering_woods_illusion_trap_amulet',
       },
       {
@@ -731,9 +730,9 @@ export default [
       {
         name: 'Carefully reach through the rubble',
         description: 'Try to retrieve the glinting object.',
-        condition: () => !state.inventory.includes(ITEM_MAP['silver_locket_lost_amulet']),
+        condition: () => !state.inventory.includes(ITEM_MAP['silver_locket_lost_martha']),
         effect:
-          "After some careful maneuvering to avoid dislodging more stones, your fingers close around a small, cool object. You pull out a [silver_locket_lost_amulet]. It's tarnished with age, but feels strangely significant.",
+          "After some careful maneuvering to avoid dislodging more stones, your fingers close around a small, cool object. You pull out a [silver_locket_lost_martha]. It's tarnished with age, but feels strangely significant.\n\nAlong with the locket, you find the tattered remains of a journal. It's mostly illegible, but you can make out the words 'Oakhaven', 'dear' and 'gift'.",
       },
     ],
     links: [

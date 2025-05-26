@@ -23,6 +23,12 @@ export default [
       'https://static.vecteezy.com/system/resources/previews/010/750/499/original/brochure-icon-design-free-vector.jpg',
   },
   {
+    id: 'silver_locket_lost_martha',
+    name: 'Sapphire Heart Locket',
+    description:
+      'A small, tarnished silver locket. The pendant is shaped like a heart, with a small blue gem in the center.',
+  },
+  {
     id: 'mayor_request_pamphlet',
     name: 'Mayoral Request',
     description: 'The mayor is looking for help to free the town from a curse. He will reward you handsomely.',

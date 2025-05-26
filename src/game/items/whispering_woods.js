@@ -71,12 +71,6 @@ export default [
     description: 'An ornate, ancient key made of a dark, unknown metal. Its teeth form a complex, interwoven symbol.',
   },
   {
-    id: 'silver_locket_lost_amulet',
-    name: 'Tarnished Silver Locket',
-    description:
-      'A small, tarnished silver locket. The pendant is shaped like a heart, with a small blue gem in the center.',
-  },
-  {
     id: 'amulet_sylvandell_spring_amulet',
     name: 'Amulet of Sylvandell (Spring)',
     description: 'The Amulet of Sylvandell, resonating with the gentle energy of healing, balance, and vibrant life.',
