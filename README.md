@@ -1,7 +1,7 @@
 # Choose Your Own Adventure Game
 
 A modern web-based Choose Your Own Adventure (CYOA) game built with Vue 3 and Vite. Navigate through an immersive text-based story where your choices shape the adventure, collect items that influence your journey, and discover multiple endings based on your decisions.
-
+ 
 ## Features
 
 - **Interactive storytelling** with branching narratives
