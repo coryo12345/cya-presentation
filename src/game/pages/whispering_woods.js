@@ -636,7 +636,9 @@ export default [
       {
         name: 'Ask if it will test you',
         description: 'Seek a peaceful resolution.',
-        condition: () => state.inventory.includes(ITEM_MAP['guardian_test_passed_amulet']),
+        condition: () =>
+          state.inventory.includes(ITEM_MAP['guardian_test_passed_amulet']) &&
+          !state.inventory.includes(ITEM_MAP['ancient_symposium_key_amulet']),
         link_to: 'guardian_riddle_amulet',
       },
       {
@@ -657,23 +659,27 @@ export default [
       {
         name: 'Answer: A Map',
         description: "Offer 'A Map' as the solution.",
+        condition: () => !state.inventory.includes(ITEM_MAP['ancient_symposium_key_amulet']),
         action: () => {
           state.addItem(ITEM_MAP['ancient_symposium_key_amulet']);
           state.openDialog(
             'Riddle Solved',
             "The Guardian nods slowly, a shimmer of approval in its form. 'You are perceptive. The Amulet requires understanding, not just strength or desire.' It gestures towards a hidden alcove in an ancient tree root. 'Take this. It may open the way.' Inside the alcove, you find an [ancient_symposium_key_amulet].",
           );
+          state.goTo('guardian_grove_amulet');
         },
       },
       {
         name: 'Answer: A Dream',
         description: "Offer 'A Dream' as the solution.",
+        condition: () => !state.inventory.includes(ITEM_MAP['ancient_symposium_key_amulet']),
         effect:
           "The Guardian remains still. 'A compelling thought, but dreams are fleeting, and what I speak of endures. That is not the truth I seek.'",
       },
       {
         name: 'Answer: The Sky',
         description: "Offer 'The Sky' as the solution.",
+        condition: () => !state.inventory.includes(ITEM_MAP['ancient_symposium_key_amulet']),
         effect:
           "The Guardian seems to sigh. 'The sky holds many wonders, but it does not fit all parts of my words. Try again, if you wish, or depart.'",
       },

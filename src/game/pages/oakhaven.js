@@ -334,7 +334,9 @@ export default [
       {
         name: 'Enter the Front Door',
         description: 'Pick the lock to the old wooden door',
-        condition: () => state.inventory.includes(ITEM_MAP['lockpick']),
+        condition: () =>
+          state.inventory.includes(ITEM_MAP['lockpick']) &&
+          !state.inventory.includes(ITEM_MAP['hidden_chapel_door_unlocked']),
         onLink: () => {
           state.removeItem(ITEM_MAP['lockpick']);
           state.addItem(ITEM_MAP['hidden_chapel_door_unlocked']);
@@ -457,8 +459,7 @@ export default [
       },
       {
         name: 'Brandish the [strange_symbol_medallion] and pretend be the buyer.',
-        description:
-          'Hold the [strange_symbol_medallion] in front of you and step forward, as if you were one of them.',
+        description: 'Hold the [strange_symbol_medallion] in front of you and step forward, as if you were the buyer.',
         condition: () =>
           state.inventory.includes(ITEM_MAP['strange_symbol_medallion']) &&
           state.inventory.includes(ITEM_MAP['bandit_journal_oakhaven']) &&
