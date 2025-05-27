@@ -19,8 +19,14 @@ export default [
         condition: () =>
           state.inventory.includes(ITEM_MAP['charcoal_stick_amulet']) &&
           !state.inventory.includes(ITEM_MAP['runic_carving_rubbing_amulet']),
-        effect:
-          'The carvings are ancient runes, weathered by time. Using your [charcoal_stick_amulet], you manage to make a [runic_carving_rubbing_amulet]. They seem to depict a cycle of growth, decay, and rebirth, with a central amulet symbol. You feel a faint hum of old magic.',
+        action: () => {
+          state.addItem(ITEM_MAP['runic_carving_rubbing_amulet']);
+          state.removeItem(ITEM_MAP['charcoal_stick_amulet']);
+          state.openDialog(
+            'Examine the carvings',
+            'The carvings are ancient runes, weathered by time. Using your [charcoal_stick_amulet], you manage to make a [runic_carving_rubbing_amulet]. They seem to depict a cycle of growth, decay, and rebirth, with a central amulet symbol. You feel a faint hum of old magic.',
+          );
+        },
       },
       {
         name: 'Examine strange carvings on an old oak',

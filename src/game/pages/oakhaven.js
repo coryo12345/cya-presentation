@@ -214,6 +214,7 @@ export default [
         condition: () => state.inventory.includes(ITEM_MAP['lost_locket_pamphlet']),
         action: () => {
           state.removeItem(ITEM_MAP['lost_locket_pamphlet']);
+          state.addItem(ITEM_MAP['strange_symbol_medallion']);
           state.openDialog(
             '',
             "The shopkeeper looks at you curiously. 'I don't know anything about that, but I have had this [strange_symbol_medallion] for a while. You can have it if you want.'",
